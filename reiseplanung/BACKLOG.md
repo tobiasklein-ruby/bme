@@ -92,7 +92,8 @@ Persönlicher Reise-Concierge für Ruby Recruiting Hub und TKLST (privat: Tobias
 | Tempo | ruhig wie Hendrik: wenige Highlights, viel Luft |
 | Dossier-Extras | Wetter + Packtipps, Sonnenzeiten/Fotospots, Fun Facts, Notfall/Praktisches |
 | Monitoring | laufend während der Reise (Verspätung, Streik, Wetter) + Alternativen |
-| Absicherung | Visum/Einreise, Reiserücktritt/Krankenversicherung, Pass-Gültigkeit prüfen |
+| Absicherung | Visum/Einreise, Pass-Gültigkeit prüfen; Reiseversicherung: Jahrespolice vorhanden (Deckung bei Fernreisen gegenprüfen) |
+| Mietwagen Ausland | nur wenn nötig, sonst Transfer/Taxi |
 
 **Was für wen**
 - Toby: Business/Networking, Sport/Laufen, Architektur/Museen, Bars/Food
@@ -150,8 +151,9 @@ Ergänzungen für uns (fehlen bei Hendrik):
 - [x] Essen & Freizeit (Runde 3)
 - [x] Abrechnung & Output (Runde 4)
 - [x] Arbeitsweise & Personen (Runde 5)
-- [ ] Pass-Ablaufdaten Toby/Laura (für Erinnerungen)
-- [ ] Mietwagen/Taxi-Präferenzen im Ausland
+- [ ] Pass-Ablaufdaten Toby/Laura unbekannt → vor jeder Auslandsreise erinnern, nachzuschauen
+- [x] Mietwagen Ausland: nur wenn nötig
+- [x] Reiseversicherung: Jahrespolice
 - [ ] Erste konkrete Reise: Start, Ziel, Zeitraum
 
 ## Erledigt
