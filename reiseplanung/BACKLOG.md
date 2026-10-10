@@ -17,8 +17,8 @@ Persönlicher Reise-Concierge für Ruby Recruiting Hub, TK EST und privat.
 | Termine | komplett flexibel |
 | Flug | immer mitprüfen |
 | Flugklasse | Premium Economy |
-| Bahnklasse | offen – nachfragen (Abwägung mit BahnCard 2. Kl., s. Grunddaten) |
-| BahnCard / Abos | Toby: BahnCard 50, 2. Klasse + Deutschlandticket (Laura: offen) |
+| Bahnklasse | Smart vergleichen: Standard 2. Kl. Flex mit BC50 + Sitzplatz; 1. Kl. nur bei kleinem Aufpreis (< ca. 30 €) oder langer Arbeitsfahrt |
+| BahnCard / Abos | Toby: BahnCard 50, 2. Klasse + Deutschlandticket (Laura: nur Deutschlandticket) |
 
 ## Grunddaten Tickets & Abos (IMMER berücksichtigen)
 **Toby**
@@ -33,7 +33,10 @@ Persönlicher Reise-Concierge für Ruby Recruiting Hub, TK EST und privat.
 - Kein Flex-Aufpreis für City-Ticket nötig (Deutschlandticket deckt das ab)
 
 **Laura**
-- BahnCard / Deutschlandticket: offen – nachfragen
+- Deutschlandticket (Nahverkehr/letzte Meile 0 €)
+- Keine BahnCard → zahlt Fernverkehr voll; bei gemeinsamen Reisen beide Preise getrennt ausweisen
+- Bei gemeinsamen Reisen Sparpreise bevorzugt prüfen (Rabattgefälle zwischen Toby und Laura beachten)
+- Laufend mitrechnen: Lohnt sich eine BahnCard 25/50 für Laura? (Hinweis geben, sobald Fahrten das rechtfertigen)
 
 ## Output-Standard: Reisedossier (Vorbild: Hendriks China-Dossier, 6 Seiten A4)
 Jede größere Reise endet mit einem PDF-Dossier:
@@ -61,9 +64,9 @@ Ergänzungen für uns (fehlen bei Hendrik):
 - Coaching-Regel: harte Zeitvorgaben hinterfragen, wenn eine knapp spätere Direktverbindung deutlich mehr Komfort/Zeit bringt.
 
 ## Offene Fragen
-- [ ] Bahnklasse (1./2. Klasse, Lounge wichtig?)
+- [x] Bahnklasse: smart vergleichen
 - [x] BahnCard Toby: BC50 2. Kl. + Deutschlandticket
-- [ ] BahnCard / Deutschlandticket Laura
+- [x] Laura: nur Deutschlandticket
 - [ ] Auto: eigenes/Firmenauto, Mietwagen, Taxi/Uber/Chauffeur, ÖPNV letzte Meile
 - [ ] Priorität Zeit vs. Geld vs. Komfort
 - [ ] Budget An-/Abreise pro Person
