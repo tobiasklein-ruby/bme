@@ -79,6 +79,25 @@ Persönlicher Reise-Concierge für Ruby Recruiting Hub und TKLST (privat: Tobias
 | Design | Ruby-CI (dunkel, Ruby-Grün/Olive, Helvetica Neue) |
 | Empfänger | Toby + Laura |
 
+## Profil: Arbeitsweise & Personen (Klick-Runde 5, 2026-10-10)
+| Thema | Regel |
+|---|---|
+| Coaching | aktiv: jede Vorgabe prüfen, Alternativen mit Ersparnis (€/Zeit) zeigen |
+| Buchen | komplett nach ausdrücklicher Freigabe; vor jeder Zahlung nochmal Bestätigung |
+| Kalender | Google Calendar: Züge, Hotel, Dinner als Entwurf nach Freigabe |
+| Arbeitsort | herdr (Live-Zugriff Bahn/Booking) |
+| Startpunkt | je nach Reise – jedes Mal fragen |
+| Sitzplatz | Fenster oder Gang egal; Ruhebereich/handyfrei bevorzugt |
+| Zeitfenster | früheste Abfahrt 6 Uhr, späteste Ankunft zu Hause 23 Uhr |
+| Tempo | ruhig wie Hendrik: wenige Highlights, viel Luft |
+| Dossier-Extras | Wetter + Packtipps, Sonnenzeiten/Fotospots, Fun Facts, Notfall/Praktisches |
+| Monitoring | laufend während der Reise (Verspätung, Streik, Wetter) + Alternativen |
+| Absicherung | Visum/Einreise, Reiserücktritt/Krankenversicherung, Pass-Gültigkeit prüfen |
+
+**Was für wen**
+- Toby: Business/Networking, Sport/Laufen, Architektur/Museen, Bars/Food
+- Laura: Shopping/Mode, Wellness/Spa, Kultur/Sightseeing, Essen & Cafés; Komfort-Regeln wie Toby
+
 ## Grunddaten Tickets & Abos (IMMER berücksichtigen)
 **Toby**
 - BahnCard 50, 2. Klasse
@@ -130,6 +149,9 @@ Ergänzungen für uns (fehlen bei Hendrik):
 - [x] Hotel komplett (Runde 2)
 - [x] Essen & Freizeit (Runde 3)
 - [x] Abrechnung & Output (Runde 4)
+- [x] Arbeitsweise & Personen (Runde 5)
+- [ ] Pass-Ablaufdaten Toby/Laura (für Erinnerungen)
+- [ ] Mietwagen/Taxi-Präferenzen im Ausland
 - [ ] Erste konkrete Reise: Start, Ziel, Zeitraum
 
 ## Erledigt
