@@ -143,12 +143,18 @@ Ergänzungen für uns (fehlen bei Hendrik):
 - Coaching-Regel: harte Zeitvorgaben hinterfragen, wenn eine knapp spätere Direktverbindung deutlich mehr Komfort/Zeit bringt.
 
 ## Testlauf 2 (mit vollem Profil) – Ergebnis
-- Dossier: reiseplanung/dossiers/Reisedossier-Berlin-2026-10.pdf (+ .html), Ruby-CI, 6 Seiten
+- Dossier v2 (ersetzt durch v3: dossiers/2026-10-berlin.*)
 - Bahn: ICE 1162 07:03→11:47 / ICE 1163 16:12→20:57, Flex 2. Kl. + BC50 ≈ 160–188 € (geschätzt)
 - Hotel: The Mandala (Risiko > 250 €), Fallback Hotel Luc
 - Learning: Montag = Museen/Sterneküchen zu → Ruhetage-Check fest in den Prozess
 - Learning: Pünktlichkeitsstatistik je Zug prüfen (Sprinter Ø +13 bis +40 Min.)
 - PDF-Pipeline: HTML → headless Chromium --print-to-pdf (WeasyPrint nicht installiert)
+
+## Exposé v3 (Feedback Toby: zu viel Text, Kosten nicht im Fokus)
+- Neu: Entscheidungs-Exposé mit Optionen A/B/C, Kennzahl „verlorene Zeit“ (Reisezeit minus Arbeitszeit), Differenzen zur Empfehlung, Balkendiagramme, Sparhebel, Datenampel
+- Technik: Reise-JSON + Generator `reiseplanung/tool/build_dossier.py` (rechnet alles selbst, PDF via Chromium)
+- Datenquellen-Hierarchie in CLAUDE.md festgelegt
+- Alte Vorlage Reisedossier-Berlin entfernt, neu: dossiers/2026-10-berlin.*
 
 ## Offene Fragen
 - [x] Bahnklasse: smart vergleichen
