@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Richtet im bme-Repo einen Auto-Push ein: Nach jedem Commit wird der aktuelle Branch sofort gepusht.
+# Richtet im bme-Repo einen Auto-Push ein: Nach jedem Commit werden der aktuelle Branch und main sofort gepusht.
 # Einmalig auf herdr ausführen: bash reiseplanung/tool/install-autopush.sh
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
@@ -8,6 +8,7 @@ cat > "$hook" <<'HOOK'
 #!/usr/bin/env bash
 branch=$(git rev-parse --abbrev-ref HEAD)
 git push -q origin "$branch" >/dev/null 2>&1 || echo "Auto-Push fehlgeschlagen – bitte 'git push' prüfen." >&2
+[ "$branch" = main ] || git push -q origin HEAD:main >/dev/null 2>&1 || echo "main nicht aktualisiert (kein Fast-Forward) – bitte prüfen." >&2
 HOOK
 chmod +x "$hook"
 echo "Auto-Push aktiv: $hook"
