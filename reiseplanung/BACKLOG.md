@@ -76,7 +76,7 @@ Persönlicher Reise-Concierge für Ruby Recruiting Hub und TKLST (privat: Tobias
 | Rechnungsempfänger | Ruby Recruiting Hub, Privat |
 | Belegliste | ja, bei Ruby-Kosten (Datum, Leistung, Betrag, Beleg) für den Monatsabschluss |
 | Ausgabe | Kurz im Chat + PDF-Dossier + Web-Seite/Artifact (Link fürs Handy) |
-| Design | Ruby-CI (dunkel, Ruby-Grün/Olive, Helvetica Neue) |
+| Design | Ruby-CI HELL & OFFEN: Cream-Grund (#FBFAF4/#F4F3E7), dunkle Schrift, Olive/Ruby-Grün als Akzent, viel Weißraum, große Schrift, Haarlinien statt Rahmen (Feedback Toby 10.10.) |
 | Empfänger | Toby + Laura |
 
 ## Profil: Arbeitsweise & Personen (Klick-Runde 5, 2026-10-10)
