@@ -17,8 +17,23 @@ Persönlicher Reise-Concierge für Ruby Recruiting Hub, TK EST und privat.
 | Termine | komplett flexibel |
 | Flug | immer mitprüfen |
 | Flugklasse | Premium Economy |
-| Bahnklasse | offen – nachfragen |
-| BahnCard | offen – nachfragen |
+| Bahnklasse | offen – nachfragen (Abwägung mit BahnCard 2. Kl., s. Grunddaten) |
+| BahnCard / Abos | Toby: BahnCard 50, 2. Klasse + Deutschlandticket (Laura: offen) |
+
+## Grunddaten Tickets & Abos (IMMER berücksichtigen)
+**Toby**
+- BahnCard 50, 2. Klasse
+  - 50 % auf Flexpreis 2. Klasse, 25 % auf Sparpreise 2. Klasse (Konditionen vor Buchung auf bahn.de gegenprüfen)
+  - Gilt nicht für Tickets der 1. Klasse → bei jeder Bahnreise vergleichen: 2. Kl. Flex mit BC50 vs. 1. Kl. Spar ohne Rabatt vs. Upgrade-Möglichkeit
+  - Preise im Vergleich immer MIT BahnCard-Rabatt rechnen und ausweisen
+- Deutschlandticket
+  - Deckt bundesweit Nahverkehr ab: U-/S-Bahn, Tram, Bus, RE/RB 2. Klasse – nicht ICE/IC/EC
+  - Letzte Meile (Bahnhof ↔ Hotel/Termin) in Stuttgart, Berlin & Co. kostet 0 € → Taxi nur bei Gepäck, Zeitdruck, später Uhrzeit oder Komfortwunsch
+  - Taxi/Uber in Vergleichen immer gegen die kostenlose ÖPNV-Option stellen
+- Kein Flex-Aufpreis für City-Ticket nötig (Deutschlandticket deckt das ab)
+
+**Laura**
+- BahnCard / Deutschlandticket: offen – nachfragen
 
 ## Output-Standard: Reisedossier (Vorbild: Hendriks China-Dossier, 6 Seiten A4)
 Jede größere Reise endet mit einem PDF-Dossier:
@@ -47,7 +62,8 @@ Ergänzungen für uns (fehlen bei Hendrik):
 
 ## Offene Fragen
 - [ ] Bahnklasse (1./2. Klasse, Lounge wichtig?)
-- [ ] BahnCard vorhanden / soll Lohnt-sich-Rechnung erfolgen?
+- [x] BahnCard Toby: BC50 2. Kl. + Deutschlandticket
+- [ ] BahnCard / Deutschlandticket Laura
 - [ ] Auto: eigenes/Firmenauto, Mietwagen, Taxi/Uber/Chauffeur, ÖPNV letzte Meile
 - [ ] Priorität Zeit vs. Geld vs. Komfort
 - [ ] Budget An-/Abreise pro Person
