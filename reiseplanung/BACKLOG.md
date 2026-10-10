@@ -25,6 +25,37 @@ Persönlicher Reise-Concierge für Ruby Recruiting Hub, TK EST und privat.
 | Bahnklasse | Smart vergleichen: Standard 2. Kl. Flex mit BC50 + Sitzplatz; 1. Kl. nur bei kleinem Aufpreis (< ca. 30 €) oder langer Arbeitsfahrt |
 | BahnCard / Abos | Toby: BahnCard 50, 2. Klasse + Deutschlandticket (Laura: nur Deutschlandticket) |
 
+## Profil: Mobilität (Klick-Runde 1, 2026-10-10)
+| Thema | Regel |
+|---|---|
+| Auto | Eigenes/Firmenauto, Verbrenner; IMMER als Option mit vorschlagen |
+| Autokosten | 0,30 €/km Pauschale (+ Parken/Maut ausweisen) |
+| Letzte Meile | ÖPNV mit D-Ticket (Standard) oder Taxi/Uber/Bolt; kein Chauffeur |
+| Priorität | Ausgewogen: immer günstigste, schnellste + Empfehlung zeigen |
+| Arbeiten unterwegs | sehr wichtig → Bahn mit Tisch/WLAN im Vergleich hoch gewichten |
+| Budget An-/Abreise | kein festes Limit, Entscheidung nach Empfehlung |
+| Flughäfen | STR und FRA |
+| Vielflieger | Miles & More, Basis ohne Status; Star Alliance bei gleichem Preis bevorzugen |
+| Low-Cost | ok, wenn Preis stark – immer mit vergleichen |
+| Gepäck | je nach Reise – jedes Mal fragen |
+| Puffer | Flug 90 Min., Bahn 15 Min. |
+| Umstiege | egal, wenn schneller |
+
+## Profil: Hotel (Klick-Runde 2, 2026-10-10)
+| Thema | Regel |
+|---|---|
+| Preisrahmen Inland | bis 250 €/Nacht |
+| Preisrahmen Ausland | je nach Stadt: Marktniveau zeigen + Empfehlung |
+| Upgrade | immer zusätzlich das Top-Haus der Stadt zeigen, egal welcher Preis |
+| Zimmer gemeinsam | 1 Doppelzimmer |
+| Stil | Design/Boutique, Grand Hotel/Klassiker, Lifestyle (25hours, Hoxton …) |
+| Programme | keine |
+| Must-haves | Gym/Spa, ruhiges Zimmer; Parkplatz nur bei Autoreisen |
+| Frühstück | nie im Hotel → immer Café-Tipp in der Nähe |
+| Lage | Altstadt/Szene bevorzugt, sonst je Reise abwägen |
+| Storno | Standard flexibel; Spartarif nur bei sicherem Termin und spürbarer Ersparnis |
+| Bewertung | mind. Booking ≥ 9,0 / Google ≥ 4,6 |
+
 ## Grunddaten Tickets & Abos (IMMER berücksichtigen)
 **Toby**
 - BahnCard 50, 2. Klasse
@@ -72,11 +103,8 @@ Ergänzungen für uns (fehlen bei Hendrik):
 - [x] Bahnklasse: smart vergleichen
 - [x] BahnCard Toby: BC50 2. Kl. + Deutschlandticket
 - [x] Laura: nur Deutschlandticket
-- [ ] Auto: eigenes/Firmenauto, Mietwagen, Taxi/Uber/Chauffeur, ÖPNV letzte Meile
-- [ ] Priorität Zeit vs. Geld vs. Komfort
-- [ ] Budget An-/Abreise pro Person
-- [ ] Gepäck
-- [ ] Hotel: Zimmeranzahl, Preisrahmen/Nacht, Ketten/Programme, Must-haves, Storno
+- [x] Mobilität komplett (Runde 1)
+- [x] Hotel komplett (Runde 2)
 - [ ] Essen: Küche, Niveau, Unverträglichkeiten
 - [ ] Erste konkrete Reise: Start, Ziel, Zeitraum
 
