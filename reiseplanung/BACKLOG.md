@@ -39,6 +39,12 @@ Ergänzungen für uns (fehlen bei Hendrik):
 - Business-Block: Termine, Adressen, Ansprechpartner, Meeting-Puffer
 - Prüfschritt: Dossier gegen Buchungen gegenlesen (bei Hendrik steht „Sebastians Extras" ohne Sebastian)
 
+## Learnings aus Testlauf 1 (Stuttgart–Berlin, 11.–13.10.2026)
+- Cloud-Umgebung: bahn.de, DB-API, Booking, Google, Hotel-Websites gesperrt → nur Websuche, keine Live-Preise. Für echte Planung: auf herdr oder mit Claude in Chrome arbeiten (Live-Zugriff auf DB Navigator/bahn.de, Booking).
+- Prüfschritt hat gegriffen: kein Ergebnis ohne Kennzeichnung VERIFIZIERT/GESCHÄTZT; Sonntagsverkehr des Sprinters unbestätigt.
+- Event-Check lohnt sich (World Health Summit, Bar Convent, Festival of Lights → Preisdruck).
+- Coaching-Regel: harte Zeitvorgaben hinterfragen, wenn eine knapp spätere Direktverbindung deutlich mehr Komfort/Zeit bringt.
+
 ## Offene Fragen
 - [ ] Bahnklasse (1./2. Klasse, Lounge wichtig?)
 - [ ] BahnCard vorhanden / soll Lohnt-sich-Rechnung erfolgen?
