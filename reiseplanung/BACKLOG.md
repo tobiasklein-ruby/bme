@@ -142,6 +142,14 @@ Ergänzungen für uns (fehlen bei Hendrik):
 - Event-Check lohnt sich (World Health Summit, Bar Convent, Festival of Lights → Preisdruck).
 - Coaching-Regel: harte Zeitvorgaben hinterfragen, wenn eine knapp spätere Direktverbindung deutlich mehr Komfort/Zeit bringt.
 
+## Testlauf 2 (mit vollem Profil) – Ergebnis
+- Dossier: reiseplanung/dossiers/Reisedossier-Berlin-2026-10.pdf (+ .html), Ruby-CI, 6 Seiten
+- Bahn: ICE 1162 07:03→11:47 / ICE 1163 16:12→20:57, Flex 2. Kl. + BC50 ≈ 160–188 € (geschätzt)
+- Hotel: The Mandala (Risiko > 250 €), Fallback Hotel Luc
+- Learning: Montag = Museen/Sterneküchen zu → Ruhetage-Check fest in den Prozess
+- Learning: Pünktlichkeitsstatistik je Zug prüfen (Sprinter Ø +13 bis +40 Min.)
+- PDF-Pipeline: HTML → headless Chromium --print-to-pdf (WeasyPrint nicht installiert)
+
 ## Offene Fragen
 - [x] Bahnklasse: smart vergleichen
 - [x] BahnCard Toby: BC50 2. Kl. + Deutschlandticket

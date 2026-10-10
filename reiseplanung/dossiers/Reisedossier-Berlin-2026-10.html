@@ -1,0 +1,255 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head><body>
+<title>Dossier Berlin Oktober</title>
+<style>
+/* Layout: A4-Dossier in Ruby-CI – dunkle Seiten, Kennzahlen-Leiste, Fahrplan als Zeitachse; am Handy einspaltig */
+:root {
+  --bg: #181818;
+  --panel: #222220;
+  --line: #3a3833;
+  --fg: #F4F3E7;
+  --muted: #b9b5a6;
+  --accent: #C3C88A;
+  --olive: #79725D;
+  --beige: #DACFC1;
+  --warn: #e0a96d;
+  --font-display: "Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
+  --font-body: "Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
+  --font-data: "Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.5; margin: 0; }
+.wrap { max-width: 980px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 48px; display: grid; gap: 40px; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; word-break: break-word; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(30px, 6vw, 52px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; }
+h2 { font-size: 22px; font-weight: 700; display: flex; gap: 12px; align-items: baseline; }
+h2 .no { color: var(--accent); font-variant-numeric: tabular-nums; font-size: 15px; }
+h3 { font-size: 15px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.brand { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 14px; }
+.wordmark { font-weight: 900; letter-spacing: 0.12em; font-size: 13px; line-height: 1.15; }
+.wordmark span { color: var(--accent); }
+section { display: grid; gap: 16px; }
+.lead { color: var(--beige); font-size: 17px; }
+.status { display: inline-flex; gap: 8px; align-items: center; border: 1px solid var(--warn); color: var(--warn); border-radius: 999px; padding: 3px 12px; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; width: fit-content; }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.kpi { background: var(--bg); padding: 14px 16px; display: grid; gap: 4px; min-width: 0; }
+.kpi b { font-size: 26px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+.kpi span { font-size: 12px; color: var(--muted); }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.box { background: var(--panel); border: 1px solid var(--line); padding: 16px 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.box.key { border-color: var(--accent); }
+ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.tbl { overflow-x: auto; border: 1px solid var(--line); }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+th { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--panel); }
+tr:last-child td { border-bottom: 0; }
+td.t { white-space: nowrap; color: var(--accent); font-weight: 700; }
+td.fix { color: var(--fg); font-weight: 700; }
+.day { display: grid; gap: 10px; }
+.dayhead { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; border-bottom: 1px solid var(--olive); padding-bottom: 6px; }
+.dayhead strong { font-size: 17px; }
+.dayhead em { font-style: normal; color: var(--muted); font-size: 12px; }
+.tag { display: inline-block; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 1px 7px; border-radius: 3px; margin-left: 6px; vertical-align: 1px; }
+.tag.v { background: var(--accent); color: var(--bg); }
+.tag.g { border: 1px solid var(--olive); color: var(--beige); }
+.tag.f { background: var(--warn); color: var(--bg); }
+.small { font-size: 12.5px; color: var(--muted); }
+.coach { border-left: 3px solid var(--accent); background: var(--panel); padding: 14px 18px; display: grid; gap: 8px; }
+.coach b { color: var(--accent); }
+footer { border-top: 1px solid var(--line); padding-top: 14px; font-size: 12px; color: var(--muted); display: grid; gap: 6px; }
+@media (max-width: 720px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid2, .grid3 { grid-template-columns: 1fr; }
+}
+@media print {
+  @page { size: A4; margin: 12mm 12mm; background: #181818; }
+  body { font-size: 11.5px; }
+  .wrap { max-width: none; padding: 0; gap: 22px; }
+  .pb { break-before: page; }
+  .box, .day, tr, .coach { break-inside: avoid; }
+  table { font-size: 10.5px; }
+  .kpi b { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+
+<header class="brand">
+  <div class="wordmark">RUBY.<br>RECRUITING<br><span>HUB</span></div>
+  <div class="eyebrow">Reisedossier · Toby · So 11. – Di 13. Oktober 2026 · Stand 10.10.2026</div>
+</header>
+
+<section>
+  <span class="status">Planungsentwurf · noch nichts gebucht</span>
+  <h1>Stuttgart → Berlin<br>Potsdamer Platz</h1>
+  <p class="lead">Zwei Nächte, ein halber Termintag, zweimal der ICE-Sprinter direkt. Hin- und Rückfahrt sind je rund 4,5 Stunden Arbeitszeit am Tisch. Das Hotel liegt drei Minuten vom Termin entfernt, der Rest des Programms ist bewusst ruhig gehalten.</p>
+  <div class="kpis">
+    <div class="kpi"><b>2</b><span>Nächte · The Mandala, Potsdamer Platz</span></div>
+    <div class="kpi"><b>9 h</b><span>Arbeitszeit im Zug (2 × 4:45 h, direkt)</span></div>
+    <div class="kpi"><b>≈ 620–830 €</b><span>Gesamt geschätzt · Kostenträger Ruby Recruiting Hub</span></div>
+    <div class="kpi"><b>0 €</b><span>Letzte Meile mit dem Deutschlandticket</span></div>
+  </div>
+  <p class="small">Kennzeichnung: <span class="tag v">verifiziert</span> = durch eine genannte Quelle belegt · <span class="tag g">geschätzt</span> = Erfahrungswert oder ältere Preisangabe · <span class="tag f">fest</span> = Zeit, an die du dich halten musst. Live-Preise für genau diese Tage waren aus der Planungsumgebung nicht abrufbar und werden beim Buchen bestätigt.</p>
+</section>
+
+<section>
+  <h3>Drei Dinge, die zählen</h3>
+  <div class="grid3">
+    <div class="box key"><strong>Hotel heute buchen</strong><p>World Health Summit (11.–13.10.), Bar Convent (12.–14.10.) und das Festival of Lights laufen gleichzeitig. Mit Flex-Rate direkt beim Mandala buchen, dann ist das ONO Spa inklusive. Ein Zimmer zum Innenhof verlangen.</p></div>
+    <div class="box key"><strong>Flexpreis wegen Verspätungen</strong><p>Der ICE 1162 kommt im Schnitt 13 bis über 40 Minuten zu spät. Der Flexpreis hat keine Zugbindung, und Termine am Sonntag nicht vor 13:30 legen. Am Dienstag spätestens um 15:45 vom Hotel losgehen.</p></div>
+    <div class="box key"><strong>Montag ist Ruhetag</strong><p>Die Staatlichen Museen und die meisten Sterneküchen haben montags geschlossen. Der Plan unten nutzt nur Häuser, die montags offen sind. Die Restaurants am Samstag reservieren.</p></div>
+  </div>
+</section>
+
+<section class="pb">
+  <h2><span class="no">1</span>Fahrplan: wann du wo sein musst</h2>
+  <p class="small">Die Termine und Uhrzeiten des Business-Termins am Montag sind angenommen: halbtags, vormittags, am Potsdamer Platz.</p>
+
+  <div class="day">
+    <div class="dayhead"><strong>So 11.10. · Anreise</strong><em>Sonnenuntergang 18:21 · Festival of Lights 19–23 Uhr</em></div>
+    <div class="tbl"><table>
+      <tr><th>Zeit</th><th>Was</th><th>Details</th></tr>
+      <tr><td class="t">06:45</td><td class="fix">Am Stuttgart Hbf sein <span class="tag f">fest</span></td><td>S-/U-Bahn mit dem Deutschlandticket. Sonntags früh fahren die Bahnen seltener, deshalb mit 15 Min. Puffer.</td></tr>
+      <tr><td class="t">07:03</td><td class="fix">ICE 1162 · ICE-Sprinter <span class="tag v">verifiziert</span></td><td>Direkt, einziger Zwischenhalt Nürnberg 08:57. Fährt laut Fahrplan täglich. Sitzplatz im Ruhebereich mit Tisch.</td></tr>
+      <tr><td class="t">11:47</td><td class="fix">Berlin Hbf (tief)</td><td>Eine Station mit RE3, RE4, RE5, RB10 oder RB14 bis Potsdamer Platz, 0 €. Alternativ Bus M41.</td></tr>
+      <tr><td class="t">12:15</td><td>Gepäck im Mandala abgeben</td><td>Check-in ab 15 Uhr. Frühen Check-in vorab anfragen.</td></tr>
+      <tr><td class="t">12:30</td><td>Mittag am Potsdamer Platz</td><td>Leicht essen, der Abend wird gut.</td></tr>
+      <tr><td class="t">14:00</td><td>Neue Nationalgalerie</td><td>Ausstellung „Ruin und Rausch – Berlin 1910–1930“ im Mies-van-der-Rohe-Bau, 10 €, 10 Min. zu Fuß. Danach durch das Kulturforum. <span class="tag g">geschätzt: So offen</span></td></tr>
+      <tr><td class="t">19:30</td><td>Abendessen: Borchardt</td><td>Berliner Institution, Business-Publikum, Schnitzel. 50–80 € p. P. Alternativen siehe Kapitel 3.</td></tr>
+      <tr><td class="t">21:15</td><td>Festival of Lights</td><td>Zu Fuß zum Bebelplatz (Staatsoper, St. Hedwig) und zum Gendarmenmarkt mit der 3D-Show am Konzerthaus, je ca. 5 Min.</td></tr>
+    </table></div>
+  </div>
+
+  <div class="day">
+    <div class="dayhead"><strong>Mo 12.10. · Termin</strong><em>Sonnenaufgang 07:26 · Sonnenuntergang 18:19</em></div>
+    <div class="tbl"><table>
+      <tr><th>Zeit</th><th>Was</th><th>Details</th></tr>
+      <tr><td class="t">07:00</td><td>Laufrunde Tiergarten, 7–8 km</td><td>Lennéstraße → Neuer See → Großer Stern → Spree → Kanzleramt → Brandenburger Tor → Hotel. Kurz: 5 km nur bis zum Großen Stern.</td></tr>
+      <tr><td class="t">08:30</td><td>Kaffee: The Barn Potsdamer Platz</td><td>Specialty Coffee und Brunch, Alte Potsdamer Str. 5, 3 Min. zu Fuß, Mo–Fr ab 8:30. <span class="tag v">verifiziert</span></td></tr>
+      <tr><td class="t">09:30</td><td class="fix">Business-Termin <span class="tag f">fest</span></td><td>Potsdamer Platz, halbtags.</td></tr>
+      <tr><td class="t">14:30</td><td>Gropius Bau + Topographie des Terrors</td><td>Beide liegen nebeneinander und haben montags geöffnet (Gropius Bau 12–19 Uhr). Die Topographie ist kostenlos. Alternativ ONO Spa im Hotel.</td></tr>
+      <tr><td class="t">18:00</td><td>Panoramapunkt, Kollhoff-Tower</td><td>Sonnenuntergang aus 100 m Höhe, ca. 9 €. <span class="tag g">Zeiten widersprüchlich</span></td></tr>
+      <tr><td class="t">19:00</td><td>Abendessen: Midtown Grill</td><td>Steak vom Holzkohleofen, Ebertstr. 3, direkt am Platz, Hauptgerichte 22–69 €, montags offen. <span class="tag v">verifiziert</span></td></tr>
+      <tr><td class="t">21:00</td><td>Victoria Bar</td><td>Klassische Cocktailbar, ruhig, Potsdamer Str. 102. Auf dem Rückweg das 3D-Mapping am Kollhoff-Tower.</td></tr>
+    </table></div>
+  </div>
+
+  <div class="day">
+    <div class="dayhead"><strong>Di 13.10. · Rückreise</strong><em>Sonnenaufgang 07:28</em></div>
+    <div class="tbl"><table>
+      <tr><th>Zeit</th><th>Was</th><th>Details</th></tr>
+      <tr><td class="t">08:30</td><td>Kaffee: The Barn</td><td>Oder Café Noir, Potsdamer Str. 142, ab 7:30.</td></tr>
+      <tr><td class="t">10:00</td><td>Gemäldegalerie, Kulturforum</td><td>Alte Meister, 14 €, Di–So 10–18 Uhr, 8 Min. zu Fuß.</td></tr>
+      <tr><td class="t">11:00</td><td class="fix">Check-out <span class="tag f">fest</span></td><td>Gepäck im Hotel lassen. Wer länger ins Museum will, checkt vor 10 Uhr aus.</td></tr>
+      <tr><td class="t">12:45</td><td>Mittag: Midtown Grill</td><td>Business-Lunch am Platz. Alternative: Paris-Moskau beim Hbf, Mo–Fr 12–15 Uhr.</td></tr>
+      <tr><td class="t">15:45</td><td class="fix">Gepäck holen, losgehen <span class="tag f">fest</span></td><td>RE eine Station bis Berlin Hbf (tief). Plan B: S1, S2 oder S25 bis Südkreuz, dort hält der ICE um 16:24.</td></tr>
+      <tr><td class="t">16:12</td><td class="fix">ICE 1163 · ICE-Sprinter <span class="tag v">verifiziert</span></td><td>Direkt, Halt Südkreuz 16:24, Nürnberg 18:55.</td></tr>
+      <tr><td class="t">20:57</td><td class="fix">Stuttgart Hbf</td><td>Mit der S-/U-Bahn nach Hause, 0 €. Laut Durchschnitt 9 Min. Verspätung, zu Hause gegen 21:30.</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<section class="pb">
+  <h2><span class="no">2</span>Anreise im Vergleich</h2>
+  <div class="tbl"><table>
+    <tr><th></th><th>Bahn · Sprinter · Flex 2. Kl. mit BahnCard 50</th><th>Auto</th><th>Flug · Eurowings STR–BER</th></tr>
+    <tr><td>Kosten hin + zurück</td><td class="fix">≈ 160–188 € <span class="tag g">geschätzt</span></td><td>≈ 430–450 € (634 km × 2 × 0,30 € + Parken max. 25 €/Tag)</td><td>≈ 200–450 € <span class="tag g">geschätzt</span></td></tr>
+    <tr><td>Tür zu Tür, pro Richtung</td><td>≈ 5:20–5:40 h</td><td>≈ 7–7:30 h mit Pausen</td><td>≈ 4–4:30 h</td></tr>
+    <tr><td>Arbeitszeit, pro Richtung</td><td class="fix">≈ 4,5 h am Stück, Tisch und Steckdose</td><td>0 h</td><td>≈ 0,5–1 h, zerstückelt</td></tr>
+    <tr><td>Urteil</td><td class="fix">Empfehlung</td><td>Teuerste und langsamste Option</td><td>Etwas schneller, aber teurer und kaum Arbeitszeit</td></tr>
+  </table></div>
+  <div class="grid2">
+    <div class="box"><h3>Preisrechnung Bahn, pro Strecke</h3>
+      <ul>
+        <li>Flexpreis 2. Kl. regulär ≈ 150–175 € <span class="tag g">geschätzt</span></li>
+        <li>Mit BahnCard 50 (−50 %): ≈ 75–88 €</li>
+        <li>Sitzplatz 2. Kl.: 5,50 € <span class="tag v">verifiziert</span></li>
+        <li>Summe ≈ 80–94 €, hin und zurück ≈ 160–188 €</li>
+      </ul>
+    </div>
+    <div class="box"><h3>Warum nicht 1. Klasse?</h3>
+      <p>Für die 1. Klasse gilt deine BahnCard nicht. Der Flexpreis 1. Kl. liegt bei ≈ 250–290 €, also ≈ 160–200 € mehr pro Strecke. Das ist weit über deiner Grenze von 30 €. Die einzige Ausnahme: Beim Buchen ist ein Sparpreis 1. Klasse weniger als 30 € teurer. Der hat dann aber Zugbindung.</p>
+    </div>
+  </div>
+  <p class="small">Streik: Mit der GDL gilt bis 31.03.2028 Friedenspflicht. Baustellen: Fernbahn Charlottenburg–Ostbahnhof bis 12.12.2026, deshalb halten die Fernzüge im Tiefgeschoss. Die Generalsanierung Hannover–Berlin läuft seit 02.10.2026. Am Reisetag <a href="https://karte.bahn.de">karte.bahn.de</a> prüfen.</p>
+</section>
+
+<section>
+  <h2><span class="no">3</span>Hotel und Abende</h2>
+  <div class="tbl"><table>
+    <tr><th>Hotel</th><th>Lage</th><th>Bewertung</th><th>Preis/Nacht</th><th>Gym/Spa · Ruhe</th></tr>
+    <tr><td class="fix">The Mandala · Empfehlung<br><span class="small">Design Hotels, 5 Sterne, Potsdamer Str. 3</span></td><td>0–3 Min. zum Termin · Bus M41 zum Hbf</td><td>Kayak 9,1 · Hotels.com 9,4</td><td>≈ 230–320 € <span class="tag g">geschätzt</span><br><span class="small">Risiko: über 250 €</span></td><td>ONO Spa + Gym · ruhige Innenhofzimmer</td></tr>
+    <tr><td>Hotel Luc, Autograph Collection<br><span class="small">Boutique, Gendarmenmarkt</span></td><td>U2 zum Potsdamer Platz, 5 Min.</td><td>Hotels.com 9,4–9,6 · Kayak 8,9</td><td>≈ 200–280 € <span class="tag g">geschätzt</span></td><td>24-h-Gym, kein Spa · Seitenstraße</td></tr>
+    <tr><td>Orania.Berlin<br><span class="small">Lifestyle, Kreuzberg</span></td><td>Bus M29, 15–20 Min.</td><td>Kayak 9,3</td><td>≈ 170–250 € <span class="tag g">geschätzt</span></td><td>Gym · belebter Platz, Ruhe unsicher</td></tr>
+    <tr><td>Top-Haus: Hotel Adlon Kempinski</td><td>Brandenburger Tor</td><td>9,3, Platz 1 Berlin (Hotelier's Choice)</td><td>≈ 450–700 € <span class="tag g">geschätzt</span></td><td>Spa · Grand Hotel</td></tr>
+  </table></div>
+  <div class="coach"><b>Coach-Hinweis</b><p>Das Mandala ist das einzige Haus, das alles erfüllt: Termin zu Fuß, Spa, ruhig und Bewertung über 9. Liegt es bei mehr als ca. 270 €, nimm das Luc. Das Orania bleibt im Budget, ist aber laut, und du hast ausdrücklich ein ruhiges Zimmer gewünscht. Deshalb ist es nur dritte Wahl.</p></div>
+
+  <div class="grid2">
+    <div class="box"><h3>Sonntagabend · drei Niveaus</h3>
+      <ul>
+        <li><strong>Szene:</strong> DUDU, Torstr. 134, Sushi und vietnamesisch, ≈ 25–40 €. Nur telefonisch reservierbar.</li>
+        <li><strong>Bistronomie:</strong> Borchardt, Französische Str. 47, ≈ 50–80 €, 19:30 · <a href="https://www.borchardt-restaurant.de">borchardt-restaurant.de</a></li>
+        <li><strong>Stern:</strong> tulus lotrek, Kreuzberg, 7-Gang-Menü ab ≈ 239 €, 19:00 · <a href="https://www.tuluslotrek.de">tuluslotrek.de</a></li>
+      </ul>
+    </div>
+    <div class="box"><h3>Montagabend · drei Niveaus</h3>
+      <ul>
+        <li><strong>Szene:</strong> Monsieur Vuong, Alte Schönhauser Str. 46, vietnamesisch, ≈ 20–30 €. Keine Reservierung, also früh kommen.</li>
+        <li><strong>Bistronomie:</strong> Midtown Grill, Ebertstr. 3, Steak, 19:00 · Tel. +49 30 22 000 5411</li>
+        <li><strong>Fine Dining:</strong> Sphere Tim Raue im Fernsehturm, 4 Gänge ab ≈ 170 € plus Turm-Ticket, 19:00 zum Sonnenuntergang · <a href="https://tv-turm.de">tv-turm.de</a></li>
+      </ul>
+      <p class="small">Facil im Mandala (2 Sterne): Ob es montags offen hat, ist unklar, weil sich die Quellen widersprechen. Nur nach Anruf einplanen.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pb">
+  <h2><span class="no">4</span>Kosten und Belege · Ruby Recruiting Hub</h2>
+  <div class="tbl"><table>
+    <tr><th>Datum</th><th>Leistung</th><th>Betrag</th><th>Kostenträger</th><th>Beleg</th></tr>
+    <tr><td>11.10.</td><td>ICE 1162 Stuttgart–Berlin, Flex 2. Kl. mit BC50 + Sitzplatz</td><td>≈ 80–94 €</td><td>Ruby Recruiting Hub</td><td>DB-Rechnung (bahn.de, Firmenadresse)</td></tr>
+    <tr><td>11.–13.10.</td><td>The Mandala, 2 Nächte ohne Frühstück</td><td>≈ 460–640 €</td><td>Ruby Recruiting Hub</td><td>Hotelrechnung auf die Firma</td></tr>
+    <tr><td>13.10.</td><td>ICE 1163 Berlin–Stuttgart, Flex 2. Kl. mit BC50 + Sitzplatz</td><td>≈ 80–94 €</td><td>Ruby Recruiting Hub</td><td>DB-Rechnung</td></tr>
+    <tr><td>11.–13.10.</td><td>ÖPNV Stuttgart/Berlin</td><td>0 €</td><td>–</td><td>Deutschlandticket</td></tr>
+    <tr><td>11.–13.10.</td><td>Essen, Museen, Bars</td><td>nach Beleg</td><td>Bewirtung → Ruby, sonst privat</td><td>Bewirtungsbeleg mit Anlass</td></tr>
+    <tr><td></td><td class="fix">Summe Reise (ohne Verpflegung)</td><td class="fix">≈ 620–830 €</td><td></td><td></td></tr>
+  </table></div>
+
+  <h2><span class="no">5</span>Praktisch</h2>
+  <div class="grid3">
+    <div class="box"><h3>Wetter und Koffer</h3><p>Mitte Oktober tagsüber ca. 13–14 °C, nachts 6–8 °C, 7–11 Regentage im Monat. Leichte Regenjacke, Laufsachen für 8–12 °C, bequeme Schuhe für den Abend. Mit Handgepäck und Laptop sind ÖPNV-Wege problemlos.</p></div>
+    <div class="box"><h3>Buchen</h3>
+      <ul>
+        <li><a href="https://www.bahn.de/buchung/fahrplan/suche#sts=true&so=Stuttgart%20Hbf&zo=Berlin%20Hbf&hd=2026-10-11T07:00:00&hza=D&kl=2">Hinfahrt auf bahn.de</a></li>
+        <li><a href="https://www.bahn.de/buchung/fahrplan/suche#sts=true&so=Berlin%20Hbf&zo=Stuttgart%20Hbf&hd=2026-10-13T16:00:00&hza=D&kl=2">Rückfahrt auf bahn.de</a></li>
+        <li>BahnCard 50, 2. Klasse, wählen · Flexpreis · Ruhebereich mit Tisch</li>
+        <li>The Mandala direkt buchen: Flex-Rate, Innenhofzimmer, früher Check-in</li>
+      </ul>
+    </div>
+    <div class="box"><h3>Notfall und Service</h3><p>Polizei 110 · Rettung 112 · Karten sperren +49 116 116. Störungen und Ersatzverbindungen im DB Navigator, Störungskarte auf karte.bahn.de.</p></div>
+  </div>
+  <div class="box"><h3>Drei Dinge über den Potsdamer Platz</h3>
+    <ul>
+      <li>1924 stand hier der erste Ampelturm Deutschlands, 8,50 m hoch und von einem Polizisten von Hand geschaltet. Eine Nachbildung steht seit 1997 auf dem Platz.</li>
+      <li>Die Neue Nationalgalerie war 2025 mit rund 600.000 Besuchern das meistbesuchte Kunstmuseum Berlins.</li>
+      <li>Der Panoramapunkt im Kollhoff-Tower liegt rund 100 m hoch. Während des Festival of Lights wird genau dieser Turm per 3D-Mapping angestrahlt.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p>Quellen: DB-Presse und bahnhof.de-Fahrplantafeln (ICE 1162/1163), fernbahn.de, railwise.eu, zugfinder.net, ADAC, APCOA, Michelin Guide, Kayak, Hotels.com, Hotelier's Choice, Museumsportal Berlin, berlin.de, visitBerlin, Schlemmer Atlas, Time Out, Top10Berlin. Abgerufen über die Websuche am 10.10.2026. Preise und Öffnungszeiten vor Ort bzw. beim Buchen gegenprüfen.</p>
+  <p>Erstellt vom Reise-Concierge für Toby &amp; Laura · Ruby Recruiting Hub · Testlauf 2</p>
+</footer>
+
+</div>
+</body></html>
