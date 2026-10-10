@@ -1,6 +1,6 @@
 # Reiseplanung – Backlog (Laura & Toby)
 
-Persönlicher Reise-Concierge für Ruby Recruiting Hub, TK EST und privat.
+Persönlicher Reise-Concierge für Ruby Recruiting Hub und TKLST (privat: Tobias & Laura).
 
 ## Arbeitsweise
 1. Agent „Route & Preise“: Bahn, Flug, Fernbus, Mietwagen, Taxi/Uber – günstigste, schnellste und empfohlene Variante.
@@ -18,7 +18,7 @@ Persönlicher Reise-Concierge für Ruby Recruiting Hub, TK EST und privat.
 |---|---|
 | Ziele | Inland und Europa |
 | Reisende | wechselnd: Laura, Toby oder beide |
-| Anlass / Kostenträger | gemischt: Ruby Recruiting, TK EST, privat |
+| Anlass / Kostenträger | gemischt: Ruby Recruiting Hub (geschäftlich) und TKLST/privat |
 | Termine | komplett flexibel |
 | Flug | immer mitprüfen |
 | Flugklasse | Premium Economy |
@@ -56,6 +56,29 @@ Persönlicher Reise-Concierge für Ruby Recruiting Hub, TK EST und privat.
 | Storno | Standard flexibel; Spartarif nur bei sicherem Termin und spürbarer Ersparnis |
 | Bewertung | mind. Booking ≥ 9,0 / Google ≥ 4,6 |
 
+## Profil: Essen & Freizeit (Klick-Runde 3, 2026-10-10)
+| Thema | Regel |
+|---|---|
+| Küchen | Italienisch/Mediterran, Asiatisch, Steak/Grill, Regional/Lokal |
+| Niveau | Mix je Abend: pro Abend 3 Niveaus (Szene 20–40 €, Bistronomie 40–80 €, gelegentlich Sterneküche) |
+| Ernährung | keine Einschränkungen |
+| Abendprogramm | Bars/Rooftops, Kultur, Sport/Events, Ruhe/Spa – passend vorschlagen |
+| Reservierung | Reservierungslinks + Uhrzeit-Vorschlag liefern |
+| Interessen | Laufen/Joggen (Laufrunde ab Hotel), Museen/Architektur |
+| Frühstück | Specialty Coffee oder Brunch-Spot nahe Hotel |
+| Vorabend-Anreise | prüfen bei Termin vor 10 Uhr, wenn gesamt günstiger, und immer als Option zeigen |
+
+## Profil: Abrechnung & Output (Klick-Runde 4, 2026-10-10)
+| Thema | Regel |
+|---|---|
+| TKLST | = Tobias & Laura, privat |
+| Kostenträger | pro Position: Ruby Recruiting Hub oder Privat |
+| Rechnungsempfänger | Ruby Recruiting Hub, Privat |
+| Belegliste | ja, bei Ruby-Kosten (Datum, Leistung, Betrag, Beleg) für den Monatsabschluss |
+| Ausgabe | Kurz im Chat + PDF-Dossier + Web-Seite/Artifact (Link fürs Handy) |
+| Design | Ruby-CI (dunkel, Ruby-Grün/Olive, Helvetica Neue) |
+| Empfänger | Toby + Laura |
+
 ## Grunddaten Tickets & Abos (IMMER berücksichtigen)
 **Toby**
 - BahnCard 50, 2. Klasse
@@ -86,7 +109,7 @@ Jede größere Reise endet mit einem PDF-Dossier:
 8. To-dos unterwegs (Reservierungen, späten Check-in ankündigen) + Quellen und Stand-Datum.
 
 Ergänzungen für uns (fehlen bei Hendrik):
-- Kosten je Kostenträger (Ruby Recruiting / TK EST / privat) + Belegliste
+- Kosten je Kostenträger (Ruby Recruiting Hub / Privat) + Belegliste
 - Storno-Fristen und Buchungsnummern je Leistung
 - Hotelname und Kategorie überall (bei Hendrik teils nur „gebucht")
 - Komfort-Standard: Bahn 1. Klasse (Hendrik: ein Zug 2. Kl.)
@@ -105,7 +128,8 @@ Ergänzungen für uns (fehlen bei Hendrik):
 - [x] Laura: nur Deutschlandticket
 - [x] Mobilität komplett (Runde 1)
 - [x] Hotel komplett (Runde 2)
-- [ ] Essen: Küche, Niveau, Unverträglichkeiten
+- [x] Essen & Freizeit (Runde 3)
+- [x] Abrechnung & Output (Runde 4)
 - [ ] Erste konkrete Reise: Start, Ziel, Zeitraum
 
 ## Erledigt
