@@ -14,7 +14,11 @@
     "use_word": "entspannt",
     "lost_note": "„Verlorene Zeit“ ist Reisezeit, in der ihr weder lesen noch entspannen könnt (Fahren, Sicherheitskontrolle, Warten).",
     "start": "2026-10-12",
-    "end": "2026-10-14"
+    "end": "2026-10-14",
+    "sichtbar": [
+      "Toby",
+      "Laura"
+    ]
   },
   "recommendation": {
     "option": "A",

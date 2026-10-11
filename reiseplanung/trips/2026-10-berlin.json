@@ -12,7 +12,10 @@
     "nights": 2,
     "start": "2026-10-11",
     "end": "2026-10-13",
-    "archiv": true
+    "archiv": true,
+    "sichtbar": [
+      "Toby"
+    ]
   },
   "recommendation": {
     "option": "A",

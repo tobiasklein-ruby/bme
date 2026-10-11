@@ -146,7 +146,8 @@
    }
   ],
   "pdf": true,
-  "archiv": false
+  "archiv": false,
+  "gemeinsam": true
  },
  {
   "slug": "2026-10-berlin",
@@ -285,6 +286,7 @@
    }
   ],
   "pdf": true,
-  "archiv": true
+  "archiv": true,
+  "gemeinsam": false
  }
 ]

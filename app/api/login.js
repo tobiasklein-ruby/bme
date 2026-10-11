@@ -1,5 +1,7 @@
-// Prüft das App-Passwort und setzt ein Login-Cookie für ein Jahr.
+// Prüft das Passwort, erkennt daran die Person (Toby oder Laura) und setzt ein Login-Cookie für ein Jahr.
 import { createHash, timingSafeEqual } from "node:crypto";
+
+const USERS = { toby: "PW_TOBY", laura: "PW_LAURA" };
 
 function readBody(req) {
   return new Promise((resolve) => {
@@ -9,22 +11,26 @@ function readBody(req) {
   });
 }
 
+const sha = (s) => createHash("sha256").update(s).digest();
+
 export default async function handler(req, res) {
-  const password = process.env.APP_PASSWORD;
-  if (req.method !== "POST" || !password) {
+  if (req.method !== "POST") {
     res.writeHead(303, { Location: "/login.html" }).end();
     return;
   }
   const given = new URLSearchParams(await readBody(req)).get("password") || "";
-  const a = createHash("sha256").update(given).digest();
-  const b = createHash("sha256").update(password).digest();
-  if (!timingSafeEqual(a, b)) {
+  let user = null;
+  for (const [name, env] of Object.entries(USERS)) {
+    const pw = process.env[env];
+    if (pw && timingSafeEqual(sha(given), sha(pw))) user = name;
+  }
+  if (!user) {
     res.writeHead(303, { Location: "/login.html?f=1" }).end();
     return;
   }
-  const token = createHash("sha256").update(password + ":tklst-v1").digest("hex");
+  const token = createHash("sha256").update(user + ":" + process.env[USERS[user]] + ":tklst-v2").digest("hex");
   res.writeHead(303, {
-    "Set-Cookie": `tklst=${token}; Max-Age=31536000; Path=/; HttpOnly; Secure; SameSite=Lax`,
+    "Set-Cookie": `tklst=${user}.${token}; Max-Age=31536000; Path=/; HttpOnly; Secure; SameSite=Lax`,
     Location: "/",
   }).end();
 }

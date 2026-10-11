@@ -76,16 +76,23 @@ nav.tabs button i { font-style: normal; font-size: 20px; line-height: 1; }
 nav.tabs button[aria-current="page"] { color: var(--fg); }
 nav.tabs button[aria-current="page"] i { filter: none; }
 .empty { color: var(--muted); text-align: center; padding: 24px 8px; }
+.card.ask { border: 2px solid var(--olive); background: var(--ruby-soft); }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opts button { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); font: 600 15px var(--font); color: var(--fg); cursor: pointer; }
+.opts button:focus-visible { outline: 2px solid var(--olive); outline-offset: 2px; }
+.other { display: flex; gap: 8px; }
+.other input { flex: 1; min-width: 0; }
 </style>
 </head>
 <body>
 <header>
-  <small>TKLST · Laura &amp; Toby</small>
+  <small id="who">TKLST Reisen-Concierge</small>
   <h1 id="title">Reisen</h1>
 </header>
 
 <main>
   <section id="tab-reisen" aria-label="Reisen">
+    <div id="rf"></div>
     <div id="next"></div>
     <h3 class="eyebrow" style="margin:18px 2px 8px">Alle Reisen</h3>
     <div class="list" id="all"><p class="empty">Reisen werden geladen …</p></div>
@@ -97,13 +104,7 @@ nav.tabs button[aria-current="page"] i { filter: none; }
       <h2>Wunsch oder Tipp schicken</h2>
       <p class="note">Landet direkt beim Concierge. Lieblingsorte und No-Gos merkt er sich dauerhaft.</p>
       <form id="wish">
-        <fieldset>
-          <legend>Von</legend>
-          <div class="chips">
-            <input type="radio" name="von" id="von-l" value="Laura" checked><label for="von-l">Laura</label>
-            <input type="radio" name="von" id="von-t" value="Toby"><label for="von-t">Toby</label>
-          </div>
-        </fieldset>
+        <input type="hidden" name="von" id="von" value="">
         <fieldset>
           <legend>Was ist es?</legend>
           <div class="chips">
@@ -129,6 +130,7 @@ nav.tabs button[aria-current="page"] i { filter: none; }
 
   <section id="tab-favoriten" aria-label="Favoriten" hidden>
     <div class="list" id="favs"><p class="empty">Favoriten werden geladen …</p></div>
+    <p class="note" style="margin-top:28px;text-align:center"><a href="/api/logout" style="color:var(--muted)">Abmelden</a></p>
   </section>
 </main>
 
@@ -174,17 +176,17 @@ function nextCard(t) {
     <p class="headline">${esc(t.headline)}</p>
     ${todos ? `<ul class="todo">${todos}</ul>` : ""}
     ${day ? `<div class="today"><span class="eyebrow">${esc(day.label)} ${esc(day.date)}</span><ol>${items}</ol></div>` : ""}
-    <div class="row"><a class="btn" href="/expose/${esc(t.slug)}.html">Exposé öffnen</a>${t.pdf ? `<a class="btn ghost" href="/expose/${esc(t.slug)}.pdf">PDF</a>` : ""}</div>
+    <div class="row"><a class="btn" href="/me/expose/${esc(t.slug)}.html">Exposé öffnen</a>${t.pdf ? `<a class="btn ghost" href="/me/expose/${esc(t.slug)}.pdf">PDF</a>` : ""}</div>
   </article>`;
 }
 
 async function loadTrips() {
   try {
-    const trips = await (await fetch("/data/trips.json", { cache: "no-cache" })).json();
+    const trips = await (await fetch("/me/data/trips.json", { cache: "no-cache" })).json();
     const today = new Date().toISOString().slice(0, 10);
     const upcoming = trips.filter((t) => !t.archiv && t.end >= today).sort((a, b) => a.start.localeCompare(b.start));
     $("#next").innerHTML = upcoming.length ? nextCard(upcoming[0]) : `<div class="card"><h2>Gerade keine Reise geplant</h2><p class="note">Schick dem Concierge einen Wunsch – unten auf „Wunsch“ tippen.</p></div>`;
-    $("#all").innerHTML = trips.map((t) => `<a class="mini" href="/expose/${esc(t.slug)}.html"><div><b>${esc(t.title)}</b><span>${esc(t.dates)} · ${esc(t.travellers)}${t.archiv ? " · Test" : ""}</span></div></a>`).join("") || `<p class="empty">Noch keine Reisen.</p>`;
+    $("#all").innerHTML = trips.map((t) => `<a class="mini" href="/me/expose/${esc(t.slug)}.html"><div><b>${esc(t.title)}</b><span>${esc(t.dates)} · ${esc(t.travellers)}${t.gemeinsam ? " · gemeinsam" : ""}${t.archiv ? " · Test" : ""}</span></div></a>`).join("") || `<p class="empty">Noch keine Reisen.</p>`;
     document.querySelectorAll(".todo input").forEach((c) => c.addEventListener("change", () => { try { localStorage.setItem(c.dataset.k, c.checked ? "1" : "0"); } catch (e) {} }));
   } catch (e) {
     $("#all").innerHTML = `<p class="empty">Reisen konnten nicht geladen werden. Bitte Internetverbindung prüfen.</p>`;
@@ -193,7 +195,7 @@ async function loadTrips() {
 
 async function loadFavs() {
   try {
-    const f = await (await fetch("/data/favoriten.json", { cache: "no-cache" })).json();
+    const f = await (await fetch("/me/data/favoriten.json", { cache: "no-cache" })).json();
     const block = (title, rows, fn) => rows.length ? `<h3 class="eyebrow" style="margin:6px 2px 0">${title}</h3>` + rows.map(fn).join("") : "";
     const html =
       block("Lieblingshotels", f.hotels, (h) => `<div class="card fav"><span class="city">${esc(h.stadt)}</span><b>${esc(h.name)}</b><span class="note">${esc(h.warum)}</span></div>`) +
@@ -205,6 +207,44 @@ async function loadFavs() {
   }
 }
 
+async function send(row) {
+  const res = await fetch(SUPABASE_URL + "/rest/v1/reise_wuensche", {
+    method: "POST",
+    headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY, "Content-Type": "application/json", Prefer: "return=minimal" },
+    body: JSON.stringify(row),
+  });
+  if (!res.ok) throw new Error(res.status);
+}
+
+function answered(id) { try { return localStorage.getItem("rf:" + id) === "1"; } catch (e) { return false; } }
+
+async function loadRF() {
+  try {
+    const qs = (await (await fetch("/me/data/rueckfragen.json", { cache: "no-cache" })).json()).filter((q) => !answered(q.id));
+    $("#rf").innerHTML = qs.map((q) => `<article class="card ask" data-id="${esc(q.id)}" data-von="${esc(q.von || "Toby")}">
+      <span class="eyebrow">Rückfrage vom Concierge${q.von ? " · an " + esc(q.von) : ""}</span>
+      <h2 style="font-size:19px">${esc(q.frage)}</h2>
+      <div class="opts">${(q.optionen || []).map((o) => `<button type="button" data-a="${esc(o)}">${esc(o)}</button>`).join("")}</div>
+      <div class="other"><input type="text" maxlength="500" placeholder="Andere Antwort" aria-label="Andere Antwort"><button class="btn ghost" type="button" data-free>Senden</button></div>
+      <p class="note" role="status"></p></article>`).join("");
+    document.querySelectorAll(".card.ask").forEach((card) => {
+      const reply = async (text) => {
+        const st = card.querySelector("[role=status]");
+        if (!text) return;
+        st.className = "note"; st.textContent = "Wird gesendet …";
+        try {
+          await send({ von: card.dataset.von, art: "Antwort", bezug: card.dataset.id, text, wann: null });
+          try { localStorage.setItem("rf:" + card.dataset.id, "1"); } catch (e) {}
+          st.className = "ok"; st.textContent = "Danke! Der Concierge plant weiter.";
+          card.querySelectorAll("button, input").forEach((el) => (el.disabled = true));
+        } catch (e) { st.className = "err"; st.textContent = "Senden hat nicht geklappt. Bitte nochmal versuchen."; }
+      };
+      card.querySelectorAll("[data-a]").forEach((b) => b.addEventListener("click", () => reply(b.dataset.a)));
+      card.querySelector("[data-free]").addEventListener("click", () => reply(card.querySelector("input").value.trim()));
+    });
+  } catch (e) { $("#rf").innerHTML = ""; }
+}
+
 $("#wish").addEventListener("submit", async (ev) => {
   ev.preventDefault();
   const fd = new FormData(ev.target);
@@ -212,13 +252,8 @@ $("#wish").addEventListener("submit", async (ev) => {
   const btn = ev.target.querySelector("button");
   btn.disabled = true; status.className = "note"; status.textContent = "Wird gesendet …";
   try {
-    const res = await fetch(SUPABASE_URL + "/rest/v1/reise_wuensche", {
-      method: "POST",
-      headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY, "Content-Type": "application/json", Prefer: "return=minimal" },
-      body: JSON.stringify({ von: fd.get("von"), art: fd.get("art"), text: fd.get("text").trim(), wann: (fd.get("wann") || "").trim() || null }),
-    });
-    if (!res.ok) throw new Error(res.status);
-    status.className = "ok"; status.textContent = "Angekommen. Der Concierge kümmert sich darum.";
+    await send({ von: fd.get("von"), art: fd.get("art"), text: fd.get("text").trim(), wann: (fd.get("wann") || "").trim() || null });
+    status.className = "ok"; status.textContent = "Angekommen. Der Concierge schaut stündlich rein – Rückfragen erscheinen unter „Reisen“.";
     ev.target.querySelector("#text").value = ""; ev.target.querySelector("#wann").value = "";
   } catch (e) {
     status.className = "err"; status.textContent = "Senden hat nicht geklappt. Bitte Internetverbindung prüfen und nochmal versuchen.";
@@ -228,7 +263,11 @@ $("#wish").addEventListener("submit", async (ev) => {
 let start = "reisen";
 try { start = localStorage.getItem("tab") || "reisen"; } catch (e) {}
 show(titles[start] ? start : "reisen");
-loadTrips(); loadFavs();
+fetch("/me/data/profil.json", { cache: "no-cache" }).then((r) => r.json()).then((p) => {
+  $("#who").textContent = "TKLST · Hallo " + p.name;
+  $("#von").value = p.name;
+}).catch(() => {});
+loadRF(); loadTrips(); loadFavs();
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});
 </script>
 </body>

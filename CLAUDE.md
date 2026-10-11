@@ -52,7 +52,9 @@ Jede Zahl bekommt eine Ampel: grün = live/Primärquelle, gelb = belegt aber nic
 - Kosten nur zum Vergleich (Optionen, Sparhebel) – keine Kostenträger-Zuordnung, keine Belegliste.
 
 ## Mobile App „TKLST Reisen-Concierge“ (app/)
-- PWA für Lauras/Tobys iPhone: Reisen + Exposés, Wunsch/Tipp schicken, Favoriten. Passwortschutz (Vercel-Env `APP_PASSWORD`).
+- PWA für Lauras/Tobys iPhone: Reisen + Exposés, Rückfragen, Wunsch/Tipp schicken, Favoriten.
+- **Privatsphäre (Pflicht):** Jede Person hat ein eigenes Passwort (Vercel-Env `PW_TOBY`, `PW_LAURA`). Jede Reise-JSON braucht `meta.sichtbar` (`["Toby"]`, `["Laura"]` oder beide). Einzelreisen sind NUR für die reisende Person sichtbar; beide nur, wenn ausdrücklich gemeinsam. Unklar → als Rückfrage an die anfragende Person stellen, nie raten. Die Middleware erzwingt das serverseitig (`/me/` → eigener Ordner, `/u/` gesperrt).
+- Rückfragen in `reiseplanung/RUECKFRAGEN.json` immer mit `von` = Person, die gefragt wird; sie sieht nur ihre eigenen.
 - Nach jedem neuen/geänderten Exposé und nach jeder Gedächtnis-Änderung: `python3 app/build.py`, dann committen + pushen (Vercel deployt automatisch).
 - Wünsche aus der App liegen im Supabase-Projekt `tklst-reisen` (ref ngmqeemhgeytcrscvfpi), Tabelle `reise_wuensche`. Bei JEDEM Sitzungsstart prüfen: `select * from reise_wuensche where status='neu'` → Lieblingsorte/No-Gos/Feedback ins GEDAECHTNIS.md, Reisewünsche ins BACKLOG.md, dann `status='übernommen'` setzen und Toby/Laura kurz berichten.
 - Getrennt von RROS halten (kein RROS-Schlüssel in der App).
