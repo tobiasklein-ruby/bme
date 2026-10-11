@@ -166,7 +166,8 @@ Ergänzungen für uns (fehlen bei Hendrik):
 ## Entscheidung 11.10.2026: reiner Concierge
 - Abrechnung (privat/Ruby) machen Toby & Laura selbst → keine Kostenträger, keine Belegliste, keine RROS-Buchhaltungs-Anbindung
 - Ausbaustufe 2: Echtzeit-Buchung über eigene Konten (DB, Lufthansa, Booking) via Claude in Chrome, Toby/Laura bestätigen nur
-- Mobile App „TKLST Reisen-Concierge“ (PWA) im Bau: app/, Wünsche → Supabase-Projekt tklst-reisen (getrennt von RROS)
+- Mobile App „TKLST Reisen-Concierge“ live: https://tklst-reisen.vercel.app (Vercel-Projekt tklst-reisen, Auto-Deploy von main), Wünsche → Supabase-Projekt tklst-reisen
+- Stündliche Routine „TKLST Reisen-Concierge stündlich“ angelegt, pausiert bis Supabase-Connector in der Routine ergänzt ist
 
 ## Offene Fragen
 - [x] Bahnklasse: smart vergleichen

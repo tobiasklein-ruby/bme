@@ -51,7 +51,7 @@ Jede Zahl bekommt eine Ampel: grün = live/Primärquelle, gelb = belegt aber nic
 - Texte kurz: pro Punkt eine Zeile, keine Absätze. Immer mindestens 2 echte Alternativen.
 - Kosten nur zum Vergleich (Optionen, Sparhebel) – keine Kostenträger-Zuordnung, keine Belegliste.
 
-## Mobile App „TKLST Reisen-Concierge“ (app/)
+## Mobile App „TKLST Reisen-Concierge“ (app/) – https://tklst-reisen.vercel.app
 - PWA für Lauras/Tobys iPhone: Reisen + Exposés, Rückfragen, Wunsch/Tipp schicken, Favoriten.
 - **Privatsphäre (Pflicht):** Jede Person hat ein eigenes Passwort (Vercel-Env `PW_TOBY`, `PW_LAURA`). Jede Reise-JSON braucht `meta.sichtbar` (`["Toby"]`, `["Laura"]` oder beide). Einzelreisen sind NUR für die reisende Person sichtbar; beide nur, wenn ausdrücklich gemeinsam. Unklar → als Rückfrage an die anfragende Person stellen, nie raten. Die Middleware erzwingt das serverseitig (`/me/` → eigener Ordner, `/u/` gesperrt).
 - Rückfragen in `reiseplanung/RUECKFRAGEN.json` immer mit `von` = Person, die gefragt wird; sie sieht nur ihre eigenen.
