@@ -82,6 +82,11 @@ nav.tabs button[aria-current="page"] i { filter: none; }
 .opts button:focus-visible { outline: 2px solid var(--olive); outline-offset: 2px; }
 .other { display: flex; gap: 8px; }
 .other input { flex: 1; min-width: 0; }
+.btn.cta { width: 100%; min-height: 56px; font-size: 17px; border-radius: 16px; margin-bottom: 14px; }
+.dates { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dates label { display: grid; gap: 4px; font-size: 13px; font-weight: 600; color: var(--muted); min-width: 0; }
+.dates input { width: 100%; min-width: 0; font: 16px var(--font); padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); color: var(--fg); }
+body.kb nav.tabs { display: none; }
 </style>
 </head>
 <body>
@@ -92,37 +97,71 @@ nav.tabs button[aria-current="page"] i { filter: none; }
 
 <main>
   <section id="tab-reisen" aria-label="Reisen">
+    <button class="btn cta" type="button" id="cta-neu">✈️ Neue Reise planen</button>
     <div id="rf"></div>
     <div id="next"></div>
     <h3 class="eyebrow" style="margin:18px 2px 8px">Alle Reisen</h3>
     <div class="list" id="all"><p class="empty">Reisen werden geladen …</p></div>
   </section>
 
-  <section id="tab-wunsch" aria-label="Wunsch schicken" hidden>
+  <section id="tab-neu" aria-label="Neue Reise planen" hidden>
     <div class="card">
       <p class="eyebrow">An den Concierge</p>
-      <h2>Wunsch oder Tipp schicken</h2>
-      <p class="note">Landet direkt beim Concierge. Lieblingsorte und No-Gos merkt er sich dauerhaft.</p>
-      <form id="wish">
-        <input type="hidden" name="von" id="von" value="">
+      <h2>Neue Reise planen</h2>
+      <p class="note">Ein paar Angaben genügen. Was fehlt, fragt der Concierge nach. Die Rückfragen erscheinen dann oben unter „Reisen“.</p>
+      <form id="trip">
+        <div>
+          <label class="eyebrow" for="ziel">Wohin?</label>
+          <input type="text" id="ziel" name="ziel" required maxlength="200" placeholder="z. B. Wien, Toskana, Stockholm – oder „Überrasch uns“">
+        </div>
         <fieldset>
-          <legend>Was ist es?</legend>
+          <legend>Wann?</legend>
+          <div class="dates">
+            <label>Von<input type="date" id="von-datum" name="vonDatum"></label>
+            <label>Bis<input type="date" id="bis-datum" name="bisDatum"></label>
+          </div>
           <div class="chips">
-            <input type="radio" name="art" id="art-r" value="Reisewunsch" checked><label for="art-r">✈️ Reisewunsch</label>
-            <input type="radio" name="art" id="art-f" value="Lieblingsort"><label for="art-f">❤️ Lieblingsort</label>
-            <input type="radio" name="art" id="art-n" value="No-Go"><label for="art-n">🚫 No-Go</label>
-            <input type="radio" name="art" id="art-b" value="Feedback"><label for="art-b">💬 Feedback</label>
+            <input type="checkbox" name="flexibel" id="flex" value="ja"><label for="flex">📅 Termin flexibel</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Wer reist?</legend>
+          <div class="chips">
+            <input type="radio" name="wer" id="wer-ich" value="nur ich" checked><label for="wer-ich">🙋 Nur ich</label>
+            <input type="radio" name="wer" id="wer-wir" value="wir beide (gemeinsam)"><label for="wer-wir">👫 Wir beide</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Was für eine Reise?</legend>
+          <div class="chips">
+            <input type="radio" name="typ" id="t-stadt" value="Städtetrip" checked><label for="t-stadt">🏙️ Städtetrip</label>
+            <input type="radio" name="typ" id="t-well" value="Wellness"><label for="t-well">🧖 Wellness</label>
+            <input type="radio" name="typ" id="t-genuss" value="Genuss & Wein"><label for="t-genuss">🍷 Genuss</label>
+            <input type="radio" name="typ" id="t-natur" value="Natur & Aktiv"><label for="t-natur">🏔️ Natur</label>
+            <input type="radio" name="typ" id="t-biz" value="Geschäftlich"><label for="t-biz">💼 Geschäftlich</label>
           </div>
         </fieldset>
         <div>
-          <label class="eyebrow" for="text">Beschreibung</label>
-          <textarea id="text" name="text" required minlength="3" maxlength="2000" placeholder="z. B. Wochenende Wien im November, gern mit Spa – oder: Das Café X in Hamburg lieben wir"></textarea>
+          <label class="eyebrow" for="wuensche">Wünsche (optional)</label>
+          <textarea id="wuensche" name="wuensche" maxlength="1500" placeholder="z. B. Hotel mit Spa, gutes Essen, Termin am Mittwoch um 10 Uhr, mit dem Zug"></textarea>
         </div>
-        <div>
-          <label class="eyebrow" for="wann">Wann? (optional)</label>
-          <input type="text" id="wann" name="wann" maxlength="200" placeholder="z. B. 20.–22. November">
+        <button class="btn" type="submit">Reise anfragen</button>
+        <p id="trip-status" role="status" class="note"></p>
+      </form>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">Merken</p>
+      <h2 style="font-size:19px">Tipp oder Feedback geben</h2>
+      <form id="wish">
+        <input type="hidden" name="von" id="von" value="">
+        <div class="chips">
+          <input type="radio" name="art" id="art-f" value="Lieblingsort" checked><label for="art-f">❤️ Lieblingsort</label>
+          <input type="radio" name="art" id="art-n" value="No-Go"><label for="art-n">🚫 No-Go</label>
+          <input type="radio" name="art" id="art-b" value="Feedback"><label for="art-b">💬 Feedback</label>
         </div>
-        <button class="btn" type="submit">Abschicken</button>
+        <textarea id="text" name="text" required minlength="3" maxlength="2000" placeholder="z. B. Das Café X in Hamburg lieben wir – oder: Hotel Y war laut, nie wieder"></textarea>
+        <button class="btn ghost" type="submit">Merken lassen</button>
         <p id="wish-status" role="status" class="note"></p>
       </form>
     </div>
@@ -136,7 +175,7 @@ nav.tabs button[aria-current="page"] i { filter: none; }
 
 <nav class="tabs" aria-label="Bereiche">
   <button data-tab="reisen" aria-current="page"><i aria-hidden="true">🧳</i>Reisen</button>
-  <button data-tab="wunsch"><i aria-hidden="true">✍️</i>Wunsch</button>
+  <button data-tab="neu"><i aria-hidden="true">✈️</i>Neue Reise</button>
   <button data-tab="favoriten"><i aria-hidden="true">❤️</i>Favoriten</button>
 </nav>
 
@@ -147,7 +186,7 @@ const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const titles = { reisen: "Reisen", wunsch: "Wunsch", favoriten: "Favoriten" };
+const titles = { reisen: "Reisen", neu: "Neue Reise", favoriten: "Favoriten" };
 
 function show(tab) {
   for (const t of Object.keys(titles)) $("#tab-" + t).hidden = t !== tab;
@@ -245,6 +284,31 @@ async function loadRF() {
   } catch (e) { $("#rf").innerHTML = ""; }
 }
 
+const fmt = (d) => d ? new Date(d + "T12:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" }) : "";
+
+$("#trip").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const fd = new FormData(ev.target);
+  const status = $("#trip-status");
+  const btn = ev.target.querySelector("button");
+  const von = fmt(fd.get("vonDatum")), bis = fmt(fd.get("bisDatum"));
+  const wann = [von && bis ? von + " – " + bis : von || bis, fd.get("flexibel") ? "flexibel" : ""].filter(Boolean).join(", ") || null;
+  const text = [
+    "Ziel: " + fd.get("ziel").trim(),
+    "Wer: " + fd.get("wer"),
+    "Art: " + fd.get("typ"),
+    fd.get("wuensche").trim() ? "Wünsche: " + fd.get("wuensche").trim() : "",
+  ].filter(Boolean).join("\n");
+  btn.disabled = true; status.className = "note"; status.textContent = "Wird gesendet …";
+  try {
+    await send({ von: $("#von").value, art: "Reisewunsch", text, wann });
+    status.className = "ok"; status.textContent = "Angekommen! Der Concierge plant los. Rückfragen und das fertige Exposé erscheinen unter „Reisen“.";
+    ev.target.reset();
+  } catch (e) {
+    status.className = "err"; status.textContent = "Senden hat nicht geklappt. Bitte Internetverbindung prüfen und nochmal versuchen.";
+  } finally { btn.disabled = false; }
+});
+
 $("#wish").addEventListener("submit", async (ev) => {
   ev.preventDefault();
   const fd = new FormData(ev.target);
@@ -252,13 +316,18 @@ $("#wish").addEventListener("submit", async (ev) => {
   const btn = ev.target.querySelector("button");
   btn.disabled = true; status.className = "note"; status.textContent = "Wird gesendet …";
   try {
-    await send({ von: fd.get("von"), art: fd.get("art"), text: fd.get("text").trim(), wann: (fd.get("wann") || "").trim() || null });
-    status.className = "ok"; status.textContent = "Angekommen. Der Concierge schaut stündlich rein – Rückfragen erscheinen unter „Reisen“.";
-    ev.target.querySelector("#text").value = ""; ev.target.querySelector("#wann").value = "";
+    await send({ von: fd.get("von"), art: fd.get("art"), text: fd.get("text").trim(), wann: null });
+    status.className = "ok"; status.textContent = "Gemerkt. Der Concierge trägt es in eure Favoriten bzw. No-Gos ein.";
+    ev.target.querySelector("#text").value = "";
   } catch (e) {
     status.className = "err"; status.textContent = "Senden hat nicht geklappt. Bitte Internetverbindung prüfen und nochmal versuchen.";
   } finally { btn.disabled = false; }
 });
+
+$("#cta-neu").addEventListener("click", () => { show("neu"); window.scrollTo(0, 0); });
+// Tastatur offen → untere Leiste ausblenden (sonst schiebt iOS sie über die Tastatur).
+document.addEventListener("focusin", (e) => { if (e.target.matches("input, textarea")) document.body.classList.add("kb"); });
+document.addEventListener("focusout", () => setTimeout(() => { if (!document.activeElement?.matches("input, textarea")) document.body.classList.remove("kb"); }, 50));
 
 let start = "reisen";
 try { start = localStorage.getItem("tab") || "reisen"; } catch (e) {}
