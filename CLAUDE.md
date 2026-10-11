@@ -6,7 +6,10 @@ Geschäftlich: Ruby Recruiting Hub. Privat: TKLST (Tobias & Laura).
 ## Pflicht beim Start jeder Sitzung
 1. `reiseplanung/BACKLOG.md` vollständig lesen – dort stehen Profil, Grunddaten (BahnCard 50 2. Kl., Deutschlandtickets), alle Regeln und Learnings.
 2. Vor dem Arbeiten `git pull`. Nach jeder neuen Info oder Entscheidung das Backlog aktualisieren, committen und pushen – immer auf den Arbeits-Branch UND auf `main` (Toby-Freigabe 10.10.2026).
-3. Auf herdr einmalig `bash reiseplanung/tool/install-autopush.sh` ausführen (Auto-Push nach jedem Commit), falls `.git/hooks/post-commit` fehlt.
+3. `reiseplanung/GEDAECHTNIS.md` lesen: Favoriten zuerst vorschlagen, No-Gos nie. Jede Rückmeldung von Toby oder Laura (Lieblingshotel, Tipp, Kritik, Wunsch) SOFORT dort eintragen, committen, pushen – ohne extra Nachfrage.
+4. Nach jeder Reise per Klick-Fragen nachfragen: Wie war Hotel, Restaurants, Programm? Ergebnis ins Gedächtnis.
+5. Agenten-Prompts immer mit den passenden Gedächtnis-Einträgen füttern.
+6. Auf herdr einmalig `bash reiseplanung/tool/install-autopush.sh` ausführen (Auto-Push nach jedem Commit), falls `.git/hooks/post-commit` fehlt.
 
 ## Interaktionsregel (immer)
 - Fehlende Infos IMMER als Klick-Fragen (AskUserQuestion) stellen, nie als Freitext-Frage.
