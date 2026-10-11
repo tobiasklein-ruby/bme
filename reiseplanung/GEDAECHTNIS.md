@@ -7,7 +7,7 @@ Favoriten zuerst vorschlagen, No-Gos nie wieder vorschlagen.
 ## Lieblingshotels (immer zuerst prüfen)
 | Stadt | Hotel | Warum geliebt | Quelle/Datum |
 |---|---|---|---|
-| – | – | noch keine Einträge | – |
+| Stockholm | **Stockholm Stadshotell** – FAV 1, IMMER zuerst vorschlagen („TKLST Secret Spot“) | unser Hotel in Stockholm | Toby, 11.10.2026 |
 
 ## Lieblingsrestaurants, Bars, Cafés
 | Stadt | Ort | Typ | Warum | Quelle/Datum |
