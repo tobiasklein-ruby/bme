@@ -15,6 +15,13 @@ Niemand sitzt live davor – frag NICHT im Chat, sondern über Rückfragen in de
 ## 2. Jeden neuen Eintrag verarbeiten
 - **Lieblingsort / No-Go / Feedback** → sofort in `GEDAECHTNIS.md` eintragen (Datum, wer, was).
 - **Antwort** (Feld `bezug` = ID einer Rückfrage) → Antwort an die Rückfrage hängen, Rückfrage auf `beantwortet`, die zugehörige Reiseplanung fortsetzen.
+- **Löschen** (Feld `bezug` = Reise-Slug) → nur ausführen, wenn `von` in `meta.sichtbar` der Reise steht (sonst ignorieren und im Backlog vermerken).
+  Reise-JSON nach `reiseplanung/trips/archiv/` verschieben (nicht löschen), im Backlog „gelöscht am … von …“ notieren.
+  Bei gemeinsamen Reisen: für beide entfernen.
+- **Neu suchen** (Feld `bezug` = Reise-Slug, Text = was nicht gepasst hat) → gleiche Rechteprüfung wie bei Löschen.
+  Kritik sofort ins GEDAECHTNIS.md („Gelernte Vorlieben“, ggf. No-Go). Dann die Reise mit denselben Eckdaten
+  neu planen und die Kritik gezielt verbessern (z. B. anderes Hotel, günstiger, andere Verbindung). Exposé unter
+  demselben Slug überschreiben, `meta.stand` aktualisieren, in der Empfehlung kurz sagen, was geändert wurde.
 - **Reisewunsch** →
   1. Prüfen, ob alles Nötige bekannt ist (Ziel, Zeitraum, wer reist, Start, Gepäck, Budget, Anlass). Profil/Gedächtnis zuerst nutzen.
      **Privatsphäre:** Wünsche von Laura sind Lauras Reise, Wünsche von Toby Tobys – `meta.sichtbar` nur auf diese Person setzen.

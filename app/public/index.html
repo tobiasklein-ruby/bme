@@ -87,6 +87,16 @@ nav.tabs button[aria-current="page"] i { filter: none; }
 .dates label { display: grid; gap: 4px; font-size: 13px; font-weight: 600; color: var(--muted); min-width: 0; }
 .dates input { width: 100%; min-width: 0; font: 16px var(--font); padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); color: var(--fg); }
 body.kb nav.tabs { display: none; }
+.btn.small { min-height: 38px; padding: 0 14px; font-size: 14px; }
+.btn.danger { background: var(--bad); color: #fff; }
+.acts { display: grid; gap: 10px; }
+.panel { display: grid; gap: 10px; background: var(--soft); border-radius: 14px; padding: 14px; }
+.panel textarea { min-height: 80px; }
+[hidden] { display: none !important; }
+.panel .chips label { background: var(--paper); }
+.panel .chips input:checked + label { background: var(--ruby); }
+.trip { display: grid; gap: 8px; background: transparent; }
+.trip .acts { padding: 0 4px 6px; }
 </style>
 </head>
 <body>
@@ -216,7 +226,54 @@ function nextCard(t) {
     ${todos ? `<ul class="todo">${todos}</ul>` : ""}
     ${day ? `<div class="today"><span class="eyebrow">${esc(day.label)} ${esc(day.date)}</span><ol>${items}</ol></div>` : ""}
     <div class="row"><a class="btn" href="/me/expose/${esc(t.slug)}.html">Exposé öffnen</a>${t.pdf ? `<a class="btn ghost" href="/me/expose/${esc(t.slug)}.pdf">PDF</a>` : ""}</div>
+    ${actions(t)}
   </article>`;
+}
+
+function pending(slug) { try { return localStorage.getItem("act:" + slug); } catch (e) { return null; } }
+
+function actions(t) {
+  const p = pending(t.slug);
+  if (p) return `<p class="note act-done">${p === "Löschen" ? "🗑️ Löschen beauftragt – verschwindet nach der nächsten Runde des Concierge." : "🔄 Neue Suche beauftragt – das neue Exposé kommt bald."}</p>`;
+  return `<div class="acts" data-slug="${esc(t.slug)}" data-title="${esc(t.title)}">
+    <div class="row"><button type="button" class="btn ghost small" data-open="neu">🔄 Nochmal suchen</button><button type="button" class="btn ghost small" data-open="del">🗑️ Löschen</button></div>
+    <div class="panel" data-panel="neu" hidden>
+      <p class="eyebrow">Was hat nicht gepasst?</p>
+      <div class="chips">${["Zu teuer", "Hotel gefällt nicht", "Andere Verbindung", "Anderes Programm", "Andere Restaurants"].map((x, i) => `<input type="checkbox" id="g-${esc(t.slug)}-${i}" value="${x}"><label for="g-${esc(t.slug)}-${i}">${x}</label>`).join("")}</div>
+      <textarea maxlength="800" placeholder="Optional genauer: z. B. lieber ein Hotel in Mitte, Budget 200 €"></textarea>
+      <button type="button" class="btn" data-send="Neu suchen">Neu suchen lassen</button>
+    </div>
+    <div class="panel" data-panel="del" hidden>
+      <p><b>„${esc(t.title)}“ wirklich löschen?</b> Sie verschwindet aus der App und wird archiviert.</p>
+      <div class="row"><button type="button" class="btn danger" data-send="Löschen">Ja, löschen</button><button type="button" class="btn ghost" data-close>Abbrechen</button></div>
+    </div>
+    <p class="note" role="status"></p>
+  </div>`;
+}
+
+function wireActions(root) {
+  root.querySelectorAll(".acts").forEach((box) => {
+    const st = box.querySelector("[role=status]");
+    box.querySelectorAll("[data-open]").forEach((b) => b.addEventListener("click", () => {
+      box.querySelectorAll(".panel").forEach((pn) => (pn.hidden = pn.dataset.panel !== b.dataset.open || !pn.hidden));
+    }));
+    box.querySelectorAll("[data-close]").forEach((b) => b.addEventListener("click", () => box.querySelectorAll(".panel").forEach((pn) => (pn.hidden = true))));
+    box.querySelectorAll("[data-send]").forEach((b) => b.addEventListener("click", async () => {
+      const art = b.dataset.send;
+      const panel = b.closest(".panel");
+      const gruende = [...panel.querySelectorAll("input:checked")].map((i) => i.value);
+      const frei = panel.querySelector("textarea")?.value.trim() || "";
+      const text = art === "Löschen" ? "Reise löschen: " + box.dataset.title
+        : ["Reise: " + box.dataset.title, gruende.length ? "Nicht gepasst: " + gruende.join(", ") : "", frei ? "Details: " + frei : ""].filter(Boolean).join("\n");
+      if (art === "Neu suchen" && !gruende.length && !frei) { st.className = "err"; st.textContent = "Bitte kurz antippen, was nicht gepasst hat."; return; }
+      b.disabled = true; st.className = "note"; st.textContent = "Wird gesendet …";
+      try {
+        await send({ von: $("#von").value, art, bezug: box.dataset.slug, text, wann: null });
+        try { localStorage.setItem("act:" + box.dataset.slug, art); } catch (e) {}
+        box.outerHTML = actions({ slug: box.dataset.slug, title: box.dataset.title });
+      } catch (e) { b.disabled = false; st.className = "err"; st.textContent = "Senden hat nicht geklappt. Bitte nochmal versuchen."; }
+    }));
+  });
 }
 
 async function loadTrips() {
@@ -224,8 +281,9 @@ async function loadTrips() {
     const trips = await (await fetch("/me/data/trips.json", { cache: "no-cache" })).json();
     const today = new Date().toISOString().slice(0, 10);
     const upcoming = trips.filter((t) => !t.archiv && t.end >= today).sort((a, b) => a.start.localeCompare(b.start));
-    $("#next").innerHTML = upcoming.length ? nextCard(upcoming[0]) : `<div class="card"><h2>Gerade keine Reise geplant</h2><p class="note">Schick dem Concierge einen Wunsch – unten auf „Wunsch“ tippen.</p></div>`;
-    $("#all").innerHTML = trips.map((t) => `<a class="mini" href="/me/expose/${esc(t.slug)}.html"><div><b>${esc(t.title)}</b><span>${esc(t.dates)} · ${esc(t.travellers)}${t.gemeinsam ? " · gemeinsam" : ""}${t.archiv ? " · Test" : ""}</span></div></a>`).join("") || `<p class="empty">Noch keine Reisen.</p>`;
+    $("#next").innerHTML = upcoming.length ? nextCard(upcoming[0]) : `<div class="card"><h2>Gerade keine Reise geplant</h2><p class="note">Oben auf „Neue Reise planen“ tippen, der Concierge legt los.</p></div>`;
+    $("#all").innerHTML = trips.map((t) => `<div class="trip"><a class="mini" href="/me/expose/${esc(t.slug)}.html"><div><b>${esc(t.title)}</b><span>${esc(t.dates)} · ${esc(t.travellers)}${t.gemeinsam ? " · gemeinsam" : ""}${t.archiv ? " · Test" : ""}</span></div></a>${upcoming[0] && upcoming[0].slug === t.slug ? "" : actions(t)}</div>`).join("") || `<p class="empty">Noch keine Reisen.</p>`;
+    wireActions(document);
     document.querySelectorAll(".todo input").forEach((c) => c.addEventListener("change", () => { try { localStorage.setItem(c.dataset.k, c.checked ? "1" : "0"); } catch (e) {} }));
   } catch (e) {
     $("#all").innerHTML = `<p class="empty">Reisen konnten nicht geladen werden. Bitte Internetverbindung prüfen.</p>`;
