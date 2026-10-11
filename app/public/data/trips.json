@@ -1,0 +1,290 @@
+[
+ {
+  "slug": "2026-10-berlin-paar",
+  "title": "Berlin zu zweit",
+  "route": "Stuttgart → Berlin → Stuttgart",
+  "dates": "Mo 12. – Mi 14. Oktober 2026",
+  "start": "2026-10-12",
+  "end": "2026-10-14",
+  "travellers": "Laura & Toby",
+  "status": "Entwurf · nichts gebucht",
+  "headline": "Mit dem ICE-Sprinter hin, flexibel zurück, dazwischen The Mandala mit Panorama-Spa",
+  "todo": [
+   "Bahn heute buchen: hin Sparpreis ICE 1162 (07:03), zurück Flexpreis. Rückverbindung um ca. 13:30 live bestätigen",
+   "The Mandala: Flex-Rate, Hofzimmer, Gepäck ab 12 Uhr, Spa-Zugang klären",
+   "Reservieren: Grill Royal (Mo), Remi (Di), Dom-Konzert Di 20:30, Reichstagskuppel Mi"
+  ],
+  "hotel": "The Mandala",
+  "days": [
+   {
+    "label": "Montag",
+    "date": "12.10.",
+    "items": [
+     {
+      "t": "06:30",
+      "what": "Los von zu Hause",
+      "fix": true
+     },
+     {
+      "t": "07:03",
+      "what": "ICE 1162, direkt",
+      "fix": true
+     },
+     {
+      "t": "11:47",
+      "what": "Berlin Hbf, RE 1 Station",
+      "fix": false
+     },
+     {
+      "t": "12:15",
+      "what": "Koffer ins Mandala, Lunch",
+      "fix": false
+     },
+     {
+      "t": "14:30",
+      "what": "Gropius Bau (montags offen)",
+      "fix": false
+     },
+     {
+      "t": "17:00",
+      "what": "Laura: ONO Spa · Toby: Topographie",
+      "fix": false
+     },
+     {
+      "t": "19:30",
+      "what": "Grill Royal",
+      "fix": false
+     },
+     {
+      "t": "21:30",
+      "what": "Festival of Lights, Brandenburger Tor",
+      "fix": false
+     }
+    ]
+   },
+   {
+    "label": "Dienstag",
+    "date": "13.10.",
+    "items": [
+     {
+      "t": "07:30",
+      "what": "Toby: Lauf Tiergarten, 7 km",
+      "fix": false
+     },
+     {
+      "t": "09:00",
+      "what": "Kaffee: The Barn",
+      "fix": false
+     },
+     {
+      "t": "10:00",
+      "what": "Neue Nationalgalerie",
+      "fix": false
+     },
+     {
+      "t": "12:30",
+      "what": "Andreas Murkudis",
+      "fix": false
+     },
+     {
+      "t": "14:30",
+      "what": "Mitte: Store X, Mulackstraße",
+      "fix": false
+     },
+     {
+      "t": "18:00",
+      "what": "Remi",
+      "fix": false
+     },
+     {
+      "t": "20:30",
+      "what": "Festival-Konzert im Berliner Dom",
+      "fix": true
+     }
+    ]
+   },
+   {
+    "label": "Mittwoch",
+    "date": "14.10.",
+    "items": [
+     {
+      "t": "08:30",
+      "what": "Check-out, Koffer bleibt",
+      "fix": true
+     },
+     {
+      "t": "09:00",
+      "what": "Brunch: House of Small Wonder",
+      "fix": false
+     },
+     {
+      "t": "10:45",
+      "what": "Reichstagskuppel (angemeldet)",
+      "fix": true
+     },
+     {
+      "t": "12:30",
+      "what": "Koffer holen, zum Hbf",
+      "fix": false
+     },
+     {
+      "t": "13:30",
+      "what": "ICE ab Berlin (live bestätigen)",
+      "fix": true
+     },
+     {
+      "t": "19:30",
+      "what": "Stuttgart Hbf",
+      "fix": false
+     },
+     {
+      "t": "20:00",
+      "what": "Zu Hause",
+      "fix": true
+     }
+    ]
+   }
+  ],
+  "pdf": true,
+  "archiv": false
+ },
+ {
+  "slug": "2026-10-berlin",
+  "title": "Berlin, Potsdamer Platz",
+  "route": "Stuttgart → Berlin → Stuttgart",
+  "dates": "So 11. – Di 13. Oktober 2026",
+  "start": "2026-10-11",
+  "end": "2026-10-13",
+  "travellers": "Toby",
+  "status": "Testlauf · nicht gereist",
+  "headline": "Bahn mit dem ICE-Sprinter und The Mandala am Potsdamer Platz",
+  "todo": [
+   "Hotel heute buchen (Flex-Rate, Innenhofzimmer). Messen treiben die Preise",
+   "Bahn: 2 × Flexpreis 2. Kl. mit BahnCard 50 + Sitzplatz im Ruhebereich",
+   "Borchardt (So) und Midtown Grill (Mo) reservieren"
+  ],
+  "hotel": "The Mandala",
+  "days": [
+   {
+    "label": "Sonntag",
+    "date": "11.10.",
+    "items": [
+     {
+      "t": "06:45",
+      "what": "Stuttgart Hbf",
+      "fix": true
+     },
+     {
+      "t": "07:03",
+      "what": "ICE 1162, direkt",
+      "fix": true
+     },
+     {
+      "t": "11:47",
+      "what": "Berlin Hbf, RE 1 Station",
+      "fix": false
+     },
+     {
+      "t": "12:15",
+      "what": "Gepäck ins Mandala",
+      "fix": false
+     },
+     {
+      "t": "14:00",
+      "what": "Neue Nationalgalerie",
+      "fix": false
+     },
+     {
+      "t": "19:30",
+      "what": "Borchardt",
+      "fix": false
+     },
+     {
+      "t": "21:15",
+      "what": "Festival of Lights, Bebelplatz",
+      "fix": false
+     }
+    ]
+   },
+   {
+    "label": "Montag",
+    "date": "12.10.",
+    "items": [
+     {
+      "t": "07:00",
+      "what": "Laufen im Tiergarten, 7 km",
+      "fix": false
+     },
+     {
+      "t": "08:30",
+      "what": "Kaffee: The Barn",
+      "fix": false
+     },
+     {
+      "t": "09:30",
+      "what": "Kundentermin",
+      "fix": true
+     },
+     {
+      "t": "14:30",
+      "what": "Gropius Bau",
+      "fix": false
+     },
+     {
+      "t": "18:00",
+      "what": "Panoramapunkt, Sunset 18:19",
+      "fix": false
+     },
+     {
+      "t": "19:00",
+      "what": "Midtown Grill",
+      "fix": false
+     }
+    ]
+   },
+   {
+    "label": "Dienstag",
+    "date": "13.10.",
+    "items": [
+     {
+      "t": "08:30",
+      "what": "Kaffee: The Barn",
+      "fix": false
+     },
+     {
+      "t": "10:00",
+      "what": "Gemäldegalerie",
+      "fix": false
+     },
+     {
+      "t": "11:00",
+      "what": "Check-out, Gepäck bleibt",
+      "fix": true
+     },
+     {
+      "t": "12:45",
+      "what": "Lunch am Potsdamer Platz",
+      "fix": false
+     },
+     {
+      "t": "15:45",
+      "what": "Losgehen zum Hbf",
+      "fix": true
+     },
+     {
+      "t": "16:12",
+      "what": "ICE 1163, direkt",
+      "fix": true
+     },
+     {
+      "t": "20:57",
+      "what": "Stuttgart Hbf",
+      "fix": false
+     }
+    ]
+   }
+  ],
+  "pdf": true,
+  "archiv": true
+ }
+]

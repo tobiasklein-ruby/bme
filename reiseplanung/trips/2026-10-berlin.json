@@ -7,9 +7,12 @@
     "travellers": "Toby",
     "purpose": "Kundentermin Mo vormittags",
     "payer": "Ruby Recruiting Hub",
-    "status": "Entwurf · nichts gebucht",
+    "status": "Testlauf · nicht gereist",
     "stand": "10.10.2026",
-    "nights": 2
+    "nights": 2,
+    "start": "2026-10-11",
+    "end": "2026-10-13",
+    "archiv": true
   },
   "recommendation": {
     "option": "A",
@@ -32,109 +35,433 @@
       "name": "Bahn",
       "detail": "ICE-Sprinter direkt · 2. Kl. Flex mit BahnCard 50",
       "costs": [
-        {"label": "2 × Flexpreis 2. Kl. mit BC50", "min": 150, "max": 176, "conf": "gelb"},
-        {"label": "2 × Sitzplatz Ruhebereich", "min": 11, "max": 11, "conf": "gruen"},
-        {"label": "ÖPNV mit Deutschlandticket", "min": 0, "max": 0, "conf": "gruen"}
+        {
+          "label": "2 × Flexpreis 2. Kl. mit BC50",
+          "min": 150,
+          "max": 176,
+          "conf": "gelb"
+        },
+        {
+          "label": "2 × Sitzplatz Ruhebereich",
+          "min": 11,
+          "max": 11,
+          "conf": "gruen"
+        },
+        {
+          "label": "ÖPNV mit Deutschlandticket",
+          "min": 0,
+          "max": 0,
+          "conf": "gruen"
+        }
       ],
-      "door_h": [10.7, 11.3],
+      "door_h": [
+        10.7,
+        11.3
+      ],
       "work_h": 9.0,
-      "plus": ["Arbeiten am Tisch, 2 × 4,5 h", "Direkt, kein Umstieg"],
-      "minus": ["Sprinter oft 10–40 Min. verspätet"]
+      "plus": [
+        "Arbeiten am Tisch, 2 × 4,5 h",
+        "Direkt, kein Umstieg"
+      ],
+      "minus": [
+        "Sprinter oft 10–40 Min. verspätet"
+      ]
     },
     {
       "id": "B",
       "name": "Flug",
       "detail": "Eurowings STR–BER nonstop",
       "costs": [
-        {"label": "Flüge hin und zurück", "min": 200, "max": 450, "conf": "rot"},
-        {"label": "S-Bahn STR und FEX BER mit Deutschlandticket", "min": 0, "max": 0, "conf": "gruen"}
+        {
+          "label": "Flüge hin und zurück",
+          "min": 200,
+          "max": 450,
+          "conf": "rot"
+        },
+        {
+          "label": "S-Bahn STR und FEX BER mit Deutschlandticket",
+          "min": 0,
+          "max": 0,
+          "conf": "gruen"
+        }
       ],
-      "door_h": [8.0, 9.0],
+      "door_h": [
+        8.0,
+        9.0
+      ],
       "work_h": 1.5,
-      "plus": ["Schnellste Option Tür zu Tür"],
-      "minus": ["Kaum Arbeitszeit", "Sicherheitskontrolle, Puffer 90 Min."]
+      "plus": [
+        "Schnellste Option Tür zu Tür"
+      ],
+      "minus": [
+        "Kaum Arbeitszeit",
+        "Sicherheitskontrolle, Puffer 90 Min."
+      ]
     },
     {
       "id": "C",
       "name": "Auto",
       "detail": "Eigenes Auto · 634 km pro Richtung",
       "costs": [
-        {"label": "2 × 634 km × 0,30 €", "min": 380, "max": 380, "conf": "gruen"},
-        {"label": "Parken 2 Tage", "min": 50, "max": 70, "conf": "gelb"}
+        {
+          "label": "2 × 634 km × 0,30 €",
+          "min": 380,
+          "max": 380,
+          "conf": "gruen"
+        },
+        {
+          "label": "Parken 2 Tage",
+          "min": 50,
+          "max": 70,
+          "conf": "gelb"
+        }
       ],
-      "door_h": [14.0, 15.0],
+      "door_h": [
+        14.0,
+        15.0
+      ],
       "work_h": 0.0,
-      "plus": ["Flexibel vor Ort"],
-      "minus": ["Teuerste und längste Option", "Null Arbeitszeit"]
+      "plus": [
+        "Flexibel vor Ort"
+      ],
+      "minus": [
+        "Teuerste und längste Option",
+        "Null Arbeitszeit"
+      ]
     }
   ],
   "hotels": [
-    {"id": "mandala", "name": "The Mandala", "style": "Design Hotels · 5★", "where": "Potsdamer Platz · 3 Min. zum Termin", "rating": "9,1–9,4", "night": [230, 320], "conf": "rot", "plus": "Spa, Gym, ruhiger Innenhof", "minus": "kann über 250 € liegen"},
-    {"id": "luc", "name": "Hotel Luc", "style": "Autograph Collection · Boutique", "where": "Gendarmenmarkt · U2, 5 Min.", "rating": "8,9–9,6", "night": [200, 280], "conf": "rot", "plus": "Restaurants zu Fuß, Gym", "minus": "kein Spa"},
-    {"id": "orania", "name": "Orania.Berlin", "style": "Lifestyle · Kreuzberg", "where": "Oranienplatz · Bus, 20 Min.", "rating": "9,3", "night": [170, 250], "conf": "rot", "plus": "im Budget, Szene", "minus": "laut, Ruhe unsicher"},
-    {"id": "adlon", "name": "Hotel Adlon Kempinski", "style": "Top-Haus der Stadt", "where": "Brandenburger Tor", "rating": "9,3", "night": [450, 700], "conf": "rot", "plus": "Ikone, Spa", "minus": "weit über Budget", "top": true}
+    {
+      "id": "mandala",
+      "name": "The Mandala",
+      "style": "Design Hotels · 5★",
+      "where": "Potsdamer Platz · 3 Min. zum Termin",
+      "rating": "9,1–9,4",
+      "night": [
+        230,
+        320
+      ],
+      "conf": "rot",
+      "plus": "Spa, Gym, ruhiger Innenhof",
+      "minus": "kann über 250 € liegen"
+    },
+    {
+      "id": "luc",
+      "name": "Hotel Luc",
+      "style": "Autograph Collection · Boutique",
+      "where": "Gendarmenmarkt · U2, 5 Min.",
+      "rating": "8,9–9,6",
+      "night": [
+        200,
+        280
+      ],
+      "conf": "rot",
+      "plus": "Restaurants zu Fuß, Gym",
+      "minus": "kein Spa"
+    },
+    {
+      "id": "orania",
+      "name": "Orania.Berlin",
+      "style": "Lifestyle · Kreuzberg",
+      "where": "Oranienplatz · Bus, 20 Min.",
+      "rating": "9,3",
+      "night": [
+        170,
+        250
+      ],
+      "conf": "rot",
+      "plus": "im Budget, Szene",
+      "minus": "laut, Ruhe unsicher"
+    },
+    {
+      "id": "adlon",
+      "name": "Hotel Adlon Kempinski",
+      "style": "Top-Haus der Stadt",
+      "where": "Brandenburger Tor",
+      "rating": "9,3",
+      "night": [
+        450,
+        700
+      ],
+      "conf": "rot",
+      "plus": "Ikone, Spa",
+      "minus": "weit über Budget",
+      "top": true
+    }
   ],
   "savings": [
-    {"label": "Sparpreis statt Flexpreis (Bahn)", "save": [10, 100], "tradeoff": "Zugbindung, die erst ab 20 Min. Verspätung entfällt"},
-    {"label": "Hotel Luc statt Mandala", "save": [60, 80], "tradeoff": "kein Spa, 5 Min. U-Bahn zum Termin"},
-    {"label": "Orania statt Mandala", "save": [120, 140], "tradeoff": "laut, du wolltest ein ruhiges Zimmer"}
+    {
+      "label": "Sparpreis statt Flexpreis (Bahn)",
+      "save": [
+        10,
+        100
+      ],
+      "tradeoff": "Zugbindung, die erst ab 20 Min. Verspätung entfällt"
+    },
+    {
+      "label": "Hotel Luc statt Mandala",
+      "save": [
+        60,
+        80
+      ],
+      "tradeoff": "kein Spa, 5 Min. U-Bahn zum Termin"
+    },
+    {
+      "label": "Orania statt Mandala",
+      "save": [
+        120,
+        140
+      ],
+      "tradeoff": "laut, du wolltest ein ruhiges Zimmer"
+    }
   ],
   "days": [
-    {"label": "Sonntag", "date": "11.10.", "theme": "Anreise", "items": [
-      {"t": "06:45", "what": "Stuttgart Hbf", "fix": true},
-      {"t": "07:03", "what": "ICE 1162, direkt", "fix": true},
-      {"t": "11:47", "what": "Berlin Hbf, RE 1 Station", "fix": false},
-      {"t": "12:15", "what": "Gepäck ins Mandala", "fix": false},
-      {"t": "14:00", "what": "Neue Nationalgalerie", "fix": false},
-      {"t": "19:30", "what": "Borchardt", "fix": false},
-      {"t": "21:15", "what": "Festival of Lights, Bebelplatz", "fix": false}
-    ]},
-    {"label": "Montag", "date": "12.10.", "theme": "Termin", "items": [
-      {"t": "07:00", "what": "Laufen im Tiergarten, 7 km", "fix": false},
-      {"t": "08:30", "what": "Kaffee: The Barn", "fix": false},
-      {"t": "09:30", "what": "Kundentermin", "fix": true},
-      {"t": "14:30", "what": "Gropius Bau", "fix": false},
-      {"t": "18:00", "what": "Panoramapunkt, Sunset 18:19", "fix": false},
-      {"t": "19:00", "what": "Midtown Grill", "fix": false}
-    ]},
-    {"label": "Dienstag", "date": "13.10.", "theme": "Rückreise", "items": [
-      {"t": "08:30", "what": "Kaffee: The Barn", "fix": false},
-      {"t": "10:00", "what": "Gemäldegalerie", "fix": false},
-      {"t": "11:00", "what": "Check-out, Gepäck bleibt", "fix": true},
-      {"t": "12:45", "what": "Lunch am Potsdamer Platz", "fix": false},
-      {"t": "15:45", "what": "Losgehen zum Hbf", "fix": true},
-      {"t": "16:12", "what": "ICE 1163, direkt", "fix": true},
-      {"t": "20:57", "what": "Stuttgart Hbf", "fix": false}
-    ]}
+    {
+      "label": "Sonntag",
+      "date": "11.10.",
+      "theme": "Anreise",
+      "items": [
+        {
+          "t": "06:45",
+          "what": "Stuttgart Hbf",
+          "fix": true
+        },
+        {
+          "t": "07:03",
+          "what": "ICE 1162, direkt",
+          "fix": true
+        },
+        {
+          "t": "11:47",
+          "what": "Berlin Hbf, RE 1 Station",
+          "fix": false
+        },
+        {
+          "t": "12:15",
+          "what": "Gepäck ins Mandala",
+          "fix": false
+        },
+        {
+          "t": "14:00",
+          "what": "Neue Nationalgalerie",
+          "fix": false
+        },
+        {
+          "t": "19:30",
+          "what": "Borchardt",
+          "fix": false
+        },
+        {
+          "t": "21:15",
+          "what": "Festival of Lights, Bebelplatz",
+          "fix": false
+        }
+      ]
+    },
+    {
+      "label": "Montag",
+      "date": "12.10.",
+      "theme": "Termin",
+      "items": [
+        {
+          "t": "07:00",
+          "what": "Laufen im Tiergarten, 7 km",
+          "fix": false
+        },
+        {
+          "t": "08:30",
+          "what": "Kaffee: The Barn",
+          "fix": false
+        },
+        {
+          "t": "09:30",
+          "what": "Kundentermin",
+          "fix": true
+        },
+        {
+          "t": "14:30",
+          "what": "Gropius Bau",
+          "fix": false
+        },
+        {
+          "t": "18:00",
+          "what": "Panoramapunkt, Sunset 18:19",
+          "fix": false
+        },
+        {
+          "t": "19:00",
+          "what": "Midtown Grill",
+          "fix": false
+        }
+      ]
+    },
+    {
+      "label": "Dienstag",
+      "date": "13.10.",
+      "theme": "Rückreise",
+      "items": [
+        {
+          "t": "08:30",
+          "what": "Kaffee: The Barn",
+          "fix": false
+        },
+        {
+          "t": "10:00",
+          "what": "Gemäldegalerie",
+          "fix": false
+        },
+        {
+          "t": "11:00",
+          "what": "Check-out, Gepäck bleibt",
+          "fix": true
+        },
+        {
+          "t": "12:45",
+          "what": "Lunch am Potsdamer Platz",
+          "fix": false
+        },
+        {
+          "t": "15:45",
+          "what": "Losgehen zum Hbf",
+          "fix": true
+        },
+        {
+          "t": "16:12",
+          "what": "ICE 1163, direkt",
+          "fix": true
+        },
+        {
+          "t": "20:57",
+          "what": "Stuttgart Hbf",
+          "fix": false
+        }
+      ]
+    }
   ],
   "evenings": [
-    {"day": "Sonntag", "picks": [
-      {"level": "Szene", "name": "DUDU", "food": "Sushi, vietnamesisch", "price": "25–40 €", "link": "https://www.timeout.com/berlin/restaurants/dudu"},
-      {"level": "Bistronomie", "name": "Borchardt", "food": "Berliner Klassiker", "price": "50–80 €", "link": "https://www.borchardt-restaurant.de", "pick": true},
-      {"level": "Stern", "name": "tulus lotrek", "food": "7-Gang-Menü", "price": "ab 239 €", "link": "https://www.tuluslotrek.de"}
-    ]},
-    {"day": "Montag", "picks": [
-      {"level": "Szene", "name": "Monsieur Vuong", "food": "vietnamesisch", "price": "20–30 €", "link": "https://www.timeout.com/berlin/restaurants-and-cafes/monsieur-vuong"},
-      {"level": "Bistronomie", "name": "Midtown Grill", "food": "Steak, Holzkohle", "price": "40–80 €", "link": "https://www.schlemmer-atlas.de/restaurants/deutschland/berlin/midtown-grill/", "pick": true},
-      {"level": "Fine Dining", "name": "Sphere Tim Raue", "food": "Fernsehturm, Menü", "price": "ab 170 €", "link": "https://tv-turm.de"}
-    ]}
+    {
+      "day": "Sonntag",
+      "picks": [
+        {
+          "level": "Szene",
+          "name": "DUDU",
+          "food": "Sushi, vietnamesisch",
+          "price": "25–40 €",
+          "link": "https://www.timeout.com/berlin/restaurants/dudu"
+        },
+        {
+          "level": "Bistronomie",
+          "name": "Borchardt",
+          "food": "Berliner Klassiker",
+          "price": "50–80 €",
+          "link": "https://www.borchardt-restaurant.de",
+          "pick": true
+        },
+        {
+          "level": "Stern",
+          "name": "tulus lotrek",
+          "food": "7-Gang-Menü",
+          "price": "ab 239 €",
+          "link": "https://www.tuluslotrek.de"
+        }
+      ]
+    },
+    {
+      "day": "Montag",
+      "picks": [
+        {
+          "level": "Szene",
+          "name": "Monsieur Vuong",
+          "food": "vietnamesisch",
+          "price": "20–30 €",
+          "link": "https://www.timeout.com/berlin/restaurants-and-cafes/monsieur-vuong"
+        },
+        {
+          "level": "Bistronomie",
+          "name": "Midtown Grill",
+          "food": "Steak, Holzkohle",
+          "price": "40–80 €",
+          "link": "https://www.schlemmer-atlas.de/restaurants/deutschland/berlin/midtown-grill/",
+          "pick": true
+        },
+        {
+          "level": "Fine Dining",
+          "name": "Sphere Tim Raue",
+          "food": "Fernsehturm, Menü",
+          "price": "ab 170 €",
+          "link": "https://tv-turm.de"
+        }
+      ]
+    }
   ],
   "facts": [
-    {"label": "Wetter", "value": "13–14 °C, nachts 6–8 °C, Regenjacke einpacken"},
-    {"label": "Sonne", "value": "auf 07:24, unter 18:21"},
-    {"label": "Events", "value": "World Health Summit, Bar Convent, Festival of Lights"},
-    {"label": "Achtung", "value": "Montags sind Museen und viele Sterneküchen zu"}
+    {
+      "label": "Wetter",
+      "value": "13–14 °C, nachts 6–8 °C, Regenjacke einpacken"
+    },
+    {
+      "label": "Sonne",
+      "value": "auf 07:24, unter 18:21"
+    },
+    {
+      "label": "Events",
+      "value": "World Health Summit, Bar Convent, Festival of Lights"
+    },
+    {
+      "label": "Achtung",
+      "value": "Montags sind Museen und viele Sterneküchen zu"
+    }
   ],
   "sources": [
-    {"what": "Zugzeiten ICE 1162/1163", "src": "DB-Presse, bahnhof.de-Regeltafel, fernbahn.de", "conf": "gruen"},
-    {"what": "Bahnpreise", "src": "Erfahrungswert, kein Live-Preis", "conf": "gelb"},
-    {"what": "Pünktlichkeit Sprinter", "src": "zugfinder.net, railwise.eu (weichen ab)", "conf": "gelb"},
-    {"what": "Flugpreise", "src": "Portal-Angebote ohne Datum", "conf": "rot"},
-    {"what": "Auto: km und Parken", "src": "ADAC-Routenplaner, APCOA", "conf": "gruen"},
-    {"what": "Hotelpreise", "src": "Kayak-Snapshots ohne Datum", "conf": "rot"},
-    {"what": "Hotelbewertungen", "src": "Kayak, Hotels.com (Booking nicht lesbar)", "conf": "gelb"},
-    {"what": "Öffnungszeiten", "src": "Michelin, Time Out, Schlemmer Atlas", "conf": "gelb"},
-    {"what": "Events", "src": "World Health Summit, DEHOGA, berlin.de", "conf": "gruen"},
-    {"what": "Sonnenzeiten", "src": "berechnet (NOAA-Formel)", "conf": "gruen"}
+    {
+      "what": "Zugzeiten ICE 1162/1163",
+      "src": "DB-Presse, bahnhof.de-Regeltafel, fernbahn.de",
+      "conf": "gruen"
+    },
+    {
+      "what": "Bahnpreise",
+      "src": "Erfahrungswert, kein Live-Preis",
+      "conf": "gelb"
+    },
+    {
+      "what": "Pünktlichkeit Sprinter",
+      "src": "zugfinder.net, railwise.eu (weichen ab)",
+      "conf": "gelb"
+    },
+    {
+      "what": "Flugpreise",
+      "src": "Portal-Angebote ohne Datum",
+      "conf": "rot"
+    },
+    {
+      "what": "Auto: km und Parken",
+      "src": "ADAC-Routenplaner, APCOA",
+      "conf": "gruen"
+    },
+    {
+      "what": "Hotelpreise",
+      "src": "Kayak-Snapshots ohne Datum",
+      "conf": "rot"
+    },
+    {
+      "what": "Hotelbewertungen",
+      "src": "Kayak, Hotels.com (Booking nicht lesbar)",
+      "conf": "gelb"
+    },
+    {
+      "what": "Öffnungszeiten",
+      "src": "Michelin, Time Out, Schlemmer Atlas",
+      "conf": "gelb"
+    },
+    {
+      "what": "Events",
+      "src": "World Health Summit, DEHOGA, berlin.de",
+      "conf": "gruen"
+    },
+    {
+      "what": "Sonnenzeiten",
+      "src": "berechnet (NOAA-Formel)",
+      "conf": "gruen"
+    }
   ]
 }

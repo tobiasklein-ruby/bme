@@ -163,6 +163,11 @@ Ergänzungen für uns (fehlen bei Hendrik):
 - Learning: Zu zweit ohne BahnCard für Laura ist Auto (0,30 €/km) preislich gleichauf mit der Bahn → Bahn gewinnt über Zeit/Entspannung
 - Learning: Generator-Labels für private Reisen („Entspannt nutzbar“) über meta.use_label
 
+## Entscheidung 11.10.2026: reiner Concierge
+- Abrechnung (privat/Ruby) machen Toby & Laura selbst → keine Kostenträger, keine Belegliste, keine RROS-Buchhaltungs-Anbindung
+- Ausbaustufe 2: Echtzeit-Buchung über eigene Konten (DB, Lufthansa, Booking) via Claude in Chrome, Toby/Laura bestätigen nur
+- Mobile App „TKLST Reisen-Concierge“ (PWA) im Bau: app/, Wünsche → Supabase-Projekt tklst-reisen (getrennt von RROS)
+
 ## Offene Fragen
 - [x] Bahnklasse: smart vergleichen
 - [x] BahnCard Toby: BC50 2. Kl. + Deutschlandticket

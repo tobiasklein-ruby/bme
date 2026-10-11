@@ -1,0 +1,268 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FBFAF4"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<style>:root{color-scheme:light} .back{position:sticky;top:0;z-index:5;display:flex;gap:12px;align-items:center;
+padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px;background:#FBFAF4;border-bottom:1px solid #E6E0D3;
+font:600 15px "Helvetica Neue",Helvetica,Arial,sans-serif} .back a{color:#6F6A52;text-decoration:none}</style>
+</head><body><nav class="back"><a href="/">‹ Alle Reisen</a><a href="/expose/2026-10-berlin-paar.pdf" style="margin-left:auto">PDF</a></nav>
+<title>Exposé Berlin zu zweit</title>
+<style>
+/* Layout: Entscheidungs-Exposé – Seite 1 Entscheidung (Optionen A/B/C), Seite 2 Kosten, Seite 3 Ablauf, Seite 4 Abende, Seite 5 Daten. Ruby-CI hell. */
+:root {
+  --bg: #FBFAF4; --paper: #FFFFFF; --soft: #F4F3E7; --line: #E6E0D3;
+  --fg: #1C1C1A; --muted: #6E6A5E; --olive: #6F6A52; --ruby: #C3C88A; --ruby-soft: #EEF0DA;
+  --good: #3F7A4A; --mid: #B07A1C; --bad: #B0462F;
+  --font: "Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #181818; --paper: #202020; --soft: #262624; --line: #3a3833; --fg: #F4F3E7; --muted: #b5b1a3;
+  --olive: #C3C88A; --ruby: #C3C88A; --ruby-soft: #2b2d21; --good: #7fbf8a; --mid: #e0b060; --bad: #e88a73; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #181818; --paper: #202020; --soft: #262624; --line: #3a3833; --fg: #F4F3E7; --muted: #b5b1a3;
+  --olive: #C3C88A; --ruby: #C3C88A; --ruby-soft: #2b2d21; --good: #7fbf8a; --mid: #e0b060; --bad: #e88a73; color-scheme: dark; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-inline: 24px; padding-block: 40px 72px; display: grid; gap: 72px; }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.04; letter-spacing: -0.025em; font-weight: 700; }
+h2 { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--olive); font-weight: 700; }
+h3 { font-size: 24px; letter-spacing: -0.01em; }
+h4 { font-size: 17px; }
+p { margin: 0; }
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+section { display: grid; gap: 24px; }
+.top { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: baseline; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.top b { color: var(--fg); letter-spacing: 0.16em; }
+.hero { display: grid; gap: 14px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 22px; color: var(--muted); font-size: 15px; }
+.status { background: #F6E7D6; color: #8A5317; border-radius: 999px; padding: 2px 12px; font-size: 12px; font-weight: 600; }
+.verdict { background: var(--ruby-soft); border-radius: 18px; padding: 24px 28px; display: grid; gap: 10px; }
+.verdict p { font-size: 21px; font-weight: 600; letter-spacing: -0.01em; max-width: 46ch; }
+.verdict ul { margin: 0; padding-left: 20px; color: var(--muted); display: grid; gap: 4px; }
+.opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.opt { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 22px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.opt.rec { border: 2px solid var(--ruby); box-shadow: 0 6px 24px rgba(111,106,82,.12); }
+.pill { justify-self: start; background: var(--ruby); color: #1C1C1A; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+.pill.ghost { background: var(--soft); color: var(--muted); }
+.sub { color: var(--muted); font-size: 14px; }
+.big { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; margin-top: 6px; }
+.cap { color: var(--muted); font-size: 12.5px; margin-top: -6px; }
+dl { margin: 0; display: grid; gap: 6px; }
+dl div { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding-top: 6px; font-variant-numeric: tabular-nums; }
+dt { color: var(--muted); font-size: 14px; }
+dd { margin: 0; font-weight: 700; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { background: var(--soft); border-radius: 999px; padding: 2px 10px; font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.pm { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 14px; }
+.pm li::before { display: inline-block; width: 18px; font-weight: 700; }
+.pm .p::before { content: "+"; color: var(--good); }
+.pm .m::before { content: "–"; color: var(--bad); }
+.charts { display: grid; grid-template-columns: 1fr; gap: 28px; max-width: 780px; }
+.chartbox { display: grid; gap: 8px; min-width: 0; }
+.chartbox h4 { font-size: 14px; color: var(--muted); font-weight: 600; }
+.chart { width: 100%; height: auto; overflow: visible; }
+.chart .lbl { font-size: 13px; fill: var(--fg); font-weight: 600; }
+.chart .val { font-size: 12.5px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.chart .b-rec { fill: var(--ruby); }
+.chart .b-alt { fill: var(--line); }
+.chart .whisk { stroke: var(--olive); stroke-width: 2; }
+.chart .b-lost { fill: var(--line); }
+.chart .b-work { fill: var(--ruby); }
+.legend { display: flex; gap: 16px; font-size: 12.5px; color: var(--muted); flex-wrap: wrap; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
+.todo { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 17px; }
+.todo li { display: flex; gap: 12px; align-items: baseline; }
+.box { width: 16px; height: 16px; border: 2px solid var(--olive); border-radius: 4px; flex: none; transform: translateY(2px); }
+.hotels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.hotel { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; display: grid; gap: 6px; min-width: 0; }
+.hotel.rec { border: 2px solid var(--ruby); }
+.hrow { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.hnum { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.hnum b { font-size: 22px; font-variant-numeric: tabular-nums; }
+.hnum span { color: var(--muted); font-size: 13px; }
+.pmline { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; }
+.pmline .p::before { content: "+ "; color: var(--good); font-weight: 700; }
+.pmline .m::before { content: "– "; color: var(--bad); font-weight: 700; }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.tbl { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: 600; }
+td.save { color: var(--good); }
+tr.sum td { border-bottom: 0; font-weight: 700; font-size: 17px; padding-top: 14px; }
+.muted { color: var(--muted); font-size: 14px; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: 0; }
+.c-g { background: var(--good); } .c-y { background: var(--mid); } .c-r { background: var(--bad); }
+.days { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.dcol { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.dcol h4 span { display: block; font-size: 13px; color: var(--muted); font-weight: 500; }
+.dcol ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; border-left: 2px solid var(--line); }
+.dcol li { display: grid; grid-template-columns: 52px 1fr; gap: 10px; padding: 7px 0 7px 14px; position: relative; }
+.dcol li::before { content: ""; position: absolute; left: -6px; top: 14px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line); }
+.dcol li.fix::before { background: var(--ruby); border-color: var(--olive); }
+.dcol li.fix span { font-weight: 700; }
+.dcol time { font-variant-numeric: tabular-nums; color: var(--olive); font-weight: 700; }
+.eves { display: grid; gap: 28px; }
+.eve { display: grid; gap: 12px; }
+.picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.pick { text-decoration: none; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: grid; gap: 3px; min-width: 0; }
+.pick.on { border: 2px solid var(--ruby); }
+.pick:hover { border-color: var(--olive); }
+.pick .lvl { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--olive); font-weight: 700; }
+.pick b { font-size: 18px; }
+.pick span { color: var(--muted); font-size: 14px; }
+.pick .pr { color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin: 0; }
+.facts div { display: grid; gap: 2px; border-top: 2px solid var(--ruby); padding-top: 8px; }
+.facts dt { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.facts dd { font-weight: 500; font-size: 14.5px; }
+.key { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+@media screen and (max-width: 760px) {
+  .opts, .charts, .hotels, .two, .days, .picks { grid-template-columns: 1fr; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wrap { padding-inline: 16px; gap: 56px; }
+}
+@media print {
+  @page { size: A4; margin: 14mm; }
+  body { font-size: 11.5px; background: #FBFAF4; }
+  .wrap { max-width: none; padding: 0; gap: 26px; }
+  .pb { break-before: page; }
+  .opt, .hotel, .pick, .dcol, .verdict, tr { break-inside: avoid; }
+  .big { font-size: 26px; } h1 { font-size: 40px; } h3 { font-size: 19px; }
+  .verdict p { font-size: 16px; } .todo { font-size: 13px; } table { font-size: 11.5px; }
+  .opt { box-shadow: none; padding: 16px; gap: 7px; }
+  .verdict { padding: 16px 20px; }
+  .hotel, .pick { padding: 12px 14px; }
+  .dcol li { padding: 4px 0 4px 12px; }
+  section { gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<div class="wrap">
+
+<section>
+  <div class="top"><b>TKLST · Reisen-Concierge</b><span>Exposé · Stand 11.10.2026</span></div>
+  <div class="hero">
+    <span class="status" style="justify-self:start">Entwurf · nichts gebucht</span>
+    <h1>Berlin zu zweit</h1>
+    <div class="meta"><span>Stuttgart → Berlin → Stuttgart</span><span>Mo 12. – Mi 14. Oktober 2026</span><span>Laura &amp; Toby · Kurztrip, keine Termine</span></div>
+  </div>
+  <div class="verdict"><h2>Unsere Empfehlung</h2><p>Mit dem ICE-Sprinter hin, flexibel zurück, dazwischen The Mandala mit Panorama-Spa</p><ul><li>07:03 ab Stuttgart, 11:47 in Berlin, direkt und ohne Umstieg</li><li>Flug würde 05:00 Aufstehen bedeuten, der Rückflug ist unsicher</li><li>Spa für Laura im Haus, Tiergarten zum Laufen für Toby vor der Tür</li></ul></div>
+</section>
+
+<section>
+  <h2>Drei Wege, ein Vergleich</h2>
+  <div class="opts">
+<article class="opt rec">
+  <span class="pill">Empfehlung</span>
+  <h3>Bahn</h3>
+  <p class="sub">ICE-Sprinter hin · zurück ca. 13:30 mit Umstieg</p>
+  <div class="big">820–1.140 €</div>
+  <p class="cap">gesamt inkl. 2 Nächte The Mandala</p>
+  <dl>
+    <div><dt>Tür zu Tür</dt><dd>12 h</dd></div>
+    <div><dt>Entspannt nutzbar</dt><dd>9 h</dd></div>
+    <div><dt>Verlorene Zeit</dt><dd>3 h</dd></div>
+  </dl>
+  
+  <ul class="pm"><li class="p">Hin direkt, 4:44 h</li><li class="p">Lesen, essen, entspannen am Platz</li><li class="m">Rückweg mit Umstieg</li><li class="m">Sprinter oft 10–40 Min. spät</li></ul>
+</article>
+<article class="opt">
+  <span class="pill ghost">Option B</span>
+  <h3>Flug</h3>
+  <p class="sub">Eurowings STR–BER · 1 Koffer</p>
+  <div class="big">900–1.680 €</div>
+  <p class="cap">gesamt inkl. 2 Nächte The Mandala</p>
+  <dl>
+    <div><dt>Tür zu Tür</dt><dd>9,2 h</dd></div>
+    <div><dt>Entspannt nutzbar</dt><dd>1 h</dd></div>
+    <div><dt>Verlorene Zeit</dt><dd>8,2 h</dd></div>
+  </dl>
+  <div class="chips"><span class="chip">+308 €</span><span class="chip">−2,8 h unterwegs</span><span class="chip">+5,2 h verlorene Zeit</span></div>
+  <ul class="pm"><li class="p">Am schnellsten in Berlin</li><li class="m">Abflug 07:10, also 05:00 aus dem Haus</li><li class="m">Rückflug am Mittwoch unklar</li></ul>
+</article>
+<article class="opt">
+  <span class="pill ghost">Option C</span>
+  <h3>Auto</h3>
+  <p class="sub">Eigenes Auto · 634 km pro Richtung</p>
+  <div class="big">890–1.100 €</div>
+  <p class="cap">gesamt inkl. 2 Nächte The Mandala</p>
+  <dl>
+    <div><dt>Tür zu Tür</dt><dd>14 h</dd></div>
+    <div><dt>Entspannt nutzbar</dt><dd>0 h</dd></div>
+    <div><dt>Verlorene Zeit</dt><dd>14 h</dd></div>
+  </dl>
+  <div class="chips"><span class="chip">+18 €</span><span class="chip">+2 h unterwegs</span><span class="chip">+11 h verlorene Zeit</span></div>
+  <ul class="pm"><li class="p">Gepäck egal, flexibel</li><li class="m">Längste Option</li><li class="m">Einer fährt 13 Stunden</li></ul>
+</article></div>
+  <div class="charts">
+    <div class="chartbox"><h4>Gesamtkosten (Balken = Mitte, Linie = Spanne)</h4><svg viewBox="0 0 680 110" class="chart" role="img" aria-label="Gesamtkosten je Option"><text x="0" y="23" class="lbl">A · Bahn</text><rect x="120" y="12" width="194.4" height="16" rx="3" class="b-rec"/><line x1="283.1" x2="345.7" y1="20" y2="20" class="whisk"/><text x="353.7" y="24" class="val">820–1.140 €</text><text x="0" y="57" class="lbl">B · Flug</text><rect x="120" y="46" width="255.8" height="16" rx="3" class="b-alt"/><line x1="298.2" x2="453.3" y1="54" y2="54" class="whisk"/><text x="461.3" y="58" class="val">900–1.680 €</text><text x="0" y="91" class="lbl">C · Auto</text><rect x="120" y="80" width="197.9" height="16" rx="3" class="b-alt"/><line x1="297.0" x2="338.8" y1="88" y2="88" class="whisk"/><text x="346.8" y="92" class="val">890–1.100 €</text></svg></div>
+    <div class="chartbox"><h4>Zeit unterwegs, hin und zurück</h4><svg viewBox="0 0 680 110" class="chart" role="img" aria-label="Reisezeit und Arbeitszeit je Option"><text x="0" y="23" class="lbl">A · Bahn</text><rect x="120" y="12" width="293.9" height="16" rx="3" class="b-lost"/><rect x="120" y="12" width="220.4" height="16" rx="3" class="b-work"/><text x="421.9" y="24" class="val">12 h · davon 9 h entspannt</text><text x="0" y="57" class="lbl">B · Flug</text><rect x="120" y="46" width="226.5" height="16" rx="3" class="b-lost"/><rect x="120" y="46" width="24.5" height="16" rx="3" class="b-work"/><text x="354.5" y="58" class="val">9,2 h · davon 1 h entspannt</text><text x="0" y="91" class="lbl">C · Auto</text><rect x="120" y="80" width="342.9" height="16" rx="3" class="b-lost"/><text x="470.9" y="92" class="val">14 h · davon 0 h entspannt</text></svg>
+      <div class="legend"><span><i style="background:var(--ruby)"></i>Entspannt nutzbar</span><span><i style="background:var(--line)"></i>verlorene Zeit</span></div></div>
+  </div>
+  <p class="muted">„Verlorene Zeit“ ist Reisezeit, in der ihr weder lesen noch entspannen könnt (Fahren, Sicherheitskontrolle, Warten). Differenzen beziehen sich auf die Empfehlung.</p>
+</section>
+
+<section>
+  <h2>Heute erledigen</h2>
+  <ul class="todo"><li><span class="box" aria-hidden="true"></span>Bahn heute buchen: hin Sparpreis ICE 1162 (07:03), zurück Flexpreis. Rückverbindung um ca. 13:30 live bestätigen</li><li><span class="box" aria-hidden="true"></span>The Mandala: Flex-Rate, Hofzimmer, Gepäck ab 12 Uhr, Spa-Zugang klären</li><li><span class="box" aria-hidden="true"></span>Reservieren: Grill Royal (Mo), Remi (Di), Dom-Konzert Di 20:30, Reichstagskuppel Mi</li></ul>
+</section>
+
+<section class="pb">
+  <h2>Hotel wählen</h2>
+  <div class="hotels">
+<article class="hotel rec">
+  <div class="hrow"><h4>The Mandala</h4><span class="pill">Empfehlung</span></div>
+  <p class="sub">Design Hotels · 5★ · Potsdamer Platz · 1 Station ab Hbf</p>
+  <div class="hnum"><b>460–640 €</b><span>2 Nächte · Bewertung 9,1 <span class="dot c-r" title="Schätzung"></span></span></div>
+  <p class="pmline"><span class="p">ONO Spa im 11. Stock, Saunen mit Blick, ruhig</span><span class="m">kann über 250 € liegen</span></p>
+</article>
+<article class="hotel">
+  <div class="hrow"><h4>Hotel am Steinplatz</h4><span class="pill ghost">−100 €</span></div>
+  <p class="sub">Autograph Collection · Jugendstil 1913 · Charlottenburg · S-Bahn Zoo</p>
+  <div class="hnum"><b>380–520 €</b><span>2 Nächte · Bewertung 9,6 (Hotels.com) <span class="dot c-r" title="Schätzung"></span></span></div>
+  <p class="pmline"><span class="p">Spa mit Saunen, Ku&#x27;damm-Shopping</span><span class="m">West-Berlin, weiter zur Mitte</span></p>
+</article>
+<article class="hotel">
+  <div class="hrow"><h4>Telegraphenamt</h4><span class="pill ghost">−20 €</span></div>
+  <p class="sub">Design-Boutique · Mitte · Museumsinsel zu Fuß</p>
+  <div class="hnum"><b>440–620 €</b><span>2 Nächte · Bewertung 8,9 (Booking) <span class="dot c-r" title="Schätzung"></span></span></div>
+  <p class="pmline"><span class="p">beste Szene-Lage</span><span class="m">kleiner Spa, unter 9,0</span></p>
+</article>
+<article class="hotel">
+  <div class="hrow"><h4>Hotel Adlon Kempinski</h4><span class="pill ghost">Top-Haus</span></div>
+  <p class="sub">Top-Haus der Stadt · Brandenburger Tor</p>
+  <div class="hnum"><b>900–1.400 €</b><span>2 Nächte · Bewertung 9,2 <span class="dot c-r" title="Schätzung"></span></span></div>
+  <p class="pmline"><span class="p">Ikone, Pool und Spa</span><span class="m">weit über Budget</span></p>
+</article></div>
+  <div class="two">
+    <div><h2 style="margin-bottom:10px">Kosten der Empfehlung</h2><div class="tbl"><table><tr><td>Hin: 2 × Sparpreis 2. Kl. (Toby mit BC50)</td><td class="num">100–210 €</td><td><span class="dot c-r" title="Schätzung"></span></td></tr><tr><td>Zurück: 2 × Flexpreis 2. Kl. (Toby mit BC50)</td><td class="num">230–260 €</td><td><span class="dot c-r" title="Schätzung"></span></td></tr><tr><td>4 × Sitzplatz</td><td class="num">22 €</td><td><span class="dot c-y" title="belegt, nicht live"></span></td></tr><tr><td>ÖPNV mit Deutschlandticket</td><td class="num">0 €</td><td><span class="dot c-g" title="live/primär"></span></td></tr><tr><td>2 Nächte The Mandala</td><td class="num">460–640 €</td><td><span class="dot c-r" title="Schätzung"></span></td></tr><tr class="sum"><td>Summe</td><td class="num">820–1.140 €</td><td></td></tr></table></div></div>
+    <div><h2 style="margin-bottom:10px">Sparhebel</h2><div class="tbl"><table><tr><td>Rückfahrt Sparpreis statt Flexpreis</td><td class="num save">−60–120 €</td><td class="muted">Zugbindung, dabei ist der Rückfahrplan baustellenbedingt unsicher</td></tr><tr><td>Hotel am Steinplatz statt Mandala</td><td class="num save">−60–120 €</td><td class="muted">Charlottenburg statt Potsdamer Platz</td></tr><tr><td>Sterneküche nur an einem Abend</td><td class="num save">−300–500 €</td><td class="muted">der zweite Abend in der Bistronomie</td></tr></table></div></div>
+  </div>
+  <div class="key"><span><span class="dot c-g" title="live/primär"></span> live oder Primärquelle</span><span><span class="dot c-y" title="belegt, nicht live"></span> belegt, aber nicht live</span><span><span class="dot c-r" title="Schätzung"></span> Schätzung, vor Buchung live prüfen</span></div>
+</section>
+
+<section class="pb">
+  <h2>Ablauf</h2>
+  <div class="days"><div class="dcol"><h4>Montag <span>12.10. · Ankommen</span></h4><ol><li class="fix"><time>06:30</time><span>Los von zu Hause</span></li><li class="fix"><time>07:03</time><span>ICE 1162, direkt</span></li><li class=""><time>11:47</time><span>Berlin Hbf, RE 1 Station</span></li><li class=""><time>12:15</time><span>Koffer ins Mandala, Lunch</span></li><li class=""><time>14:30</time><span>Gropius Bau (montags offen)</span></li><li class=""><time>17:00</time><span>Laura: ONO Spa · Toby: Topographie</span></li><li class=""><time>19:30</time><span>Grill Royal</span></li><li class=""><time>21:30</time><span>Festival of Lights, Brandenburger Tor</span></li></ol></div><div class="dcol"><h4>Dienstag <span>13.10. · Kultur &amp; Shopping</span></h4><ol><li class=""><time>07:30</time><span>Toby: Lauf Tiergarten, 7 km</span></li><li class=""><time>09:00</time><span>Kaffee: The Barn</span></li><li class=""><time>10:00</time><span>Neue Nationalgalerie</span></li><li class=""><time>12:30</time><span>Andreas Murkudis</span></li><li class=""><time>14:30</time><span>Mitte: Store X, Mulackstraße</span></li><li class=""><time>18:00</time><span>Remi</span></li><li class="fix"><time>20:30</time><span>Festival-Konzert im Berliner Dom</span></li></ol></div><div class="dcol"><h4>Mittwoch <span>14.10. · Heimreise</span></h4><ol><li class="fix"><time>08:30</time><span>Check-out, Koffer bleibt</span></li><li class=""><time>09:00</time><span>Brunch: House of Small Wonder</span></li><li class="fix"><time>10:45</time><span>Reichstagskuppel (angemeldet)</span></li><li class=""><time>12:30</time><span>Koffer holen, zum Hbf</span></li><li class="fix"><time>13:30</time><span>ICE ab Berlin (live bestätigen)</span></li><li class=""><time>19:30</time><span>Stuttgart Hbf</span></li><li class="fix"><time>20:00</time><span>Zu Hause</span></li></ol></div></div>
+  <p class="muted">Gefüllte Punkte sind feste Zeiten. Alles andere ist ein Vorschlag.</p>
+</section>
+
+<section>
+  <h2>Abende</h2>
+  <div class="eves"><div class="eve"><h4>Montagabend</h4><div class="picks"><a class="pick" href="https://www.timeout.com/berlin/restaurants-and-cafes/monsieur-vuong"><span class="lvl">Szene</span><b>Monsieur Vuong</b><span>vietnamesisch, ohne Reservierung</span><span class="pr">20–30 € p. P.</span></a><a class="pick on" href="https://www.grillroyal.com"><span class="lvl">Bistronomie</span><b>Grill Royal</b><span>Steak, Spree-Blick</span><span class="pr">80–120 € p. P.</span></a><a class="pick" href="https://www.facil.de"><span class="lvl">2 Sterne</span><b>FACIL</b><span>im Mandala, Mo-Öffnung prüfen</span><span class="pr">ab 175 € p. P.</span></a></div></div><div class="eve"><h4>Dienstagabend</h4><div class="picks"><a class="pick" href="https://www.top10berlin.de/de/cat/essen-267/pizza-1400/zola-168614"><span class="lvl">Szene</span><b>Zola</b><span>Neapolitanische Pizza am Kanal</span><span class="pr">15–25 € p. P.</span></a><a class="pick on" href="https://guide.michelin.com/us/en/berlin-region/berlin/restaurant/remi"><span class="lvl">Bib Gourmand</span><b>Remi</b><span>modern-regional, Torstraße</span><span class="pr">50–80 € p. P.</span></a><a class="pick" href="https://tim-raue.com"><span class="lvl">2 Sterne</span><b>Tim Raue</b><span>asiatisch, statt Dom-Konzert</span><span class="pr">ab 258 € p. P.</span></a></div></div></div>
+  <dl class="facts"><div><dt>Wetter</dt><dd>Klimamittel 13–14 °C, nachts 6 °C, Regenjacke</dd></div><div><dt>Sonne</dt><dd>auf 07:26, unter 18:19</dd></div><div><dt>Events</dt><dd>Festival of Lights 19–23 Uhr, Dom-Konzert Di 20:30</dd></div><div><dt>Achtung</dt><dd>Mo Museen zu, Di Gropius Bau zu</dd></div></dl>
+</section>
+
+<section class="pb">
+  <h2>Woher die Zahlen kommen</h2>
+  <div class="tbl"><table><tr><td><span class="dot c-y" title="belegt, nicht live"></span></td><td>Hinfahrt ICE 1162 07:03 → 11:47</td><td class="muted">DB-Presse, Stuttgarter Zeitung</td></tr><tr><td><span class="dot c-r" title="Schätzung"></span></td><td>Rückfahrt ca. 13:30</td><td class="muted">nicht live auffindbar, Baustelle Hannover–Berlin</td></tr><tr><td><span class="dot c-r" title="Schätzung"></span></td><td>Bahnpreise</td><td class="muted">Erfahrungswerte, bahn.de gesperrt</td></tr><tr><td><span class="dot c-y" title="belegt, nicht live"></span></td><td>Flug Eurowings 07:10</td><td class="muted">idealo-Flugplan (September)</td></tr><tr><td><span class="dot c-r" title="Schätzung"></span></td><td>Flugpreise</td><td class="muted">Eurowings „ab“-Preise, kein Datum</td></tr><tr><td><span class="dot c-g" title="live/primär"></span></td><td>Auto 634 km</td><td class="muted">ADAC-Routenplaner</td></tr><tr><td><span class="dot c-r" title="Schätzung"></span></td><td>Hotelpreise</td><td class="muted">Kayak, Hotels.com, Dertour-Snapshots</td></tr><tr><td><span class="dot c-y" title="belegt, nicht live"></span></td><td>Hotelbewertungen, Spa</td><td class="muted">Kayak, Booking-Auszug, Michelin</td></tr><tr><td><span class="dot c-y" title="belegt, nicht live"></span></td><td>Öffnungszeiten</td><td class="muted">Schlemmer Atlas, Michelin, visitBerlin</td></tr><tr><td><span class="dot c-g" title="live/primär"></span></td><td>Streiks</td><td class="muted">GDL/EVG Friedenspflicht (DB-Presse)</td></tr><tr><td><span class="dot c-g" title="live/primär"></span></td><td>Sonnenzeiten</td><td class="muted">berechnet (NOAA-Formel)</td></tr></table></div>
+  <div class="key"><span><span class="dot c-g" title="live/primär"></span> live oder Primärquelle</span><span><span class="dot c-y" title="belegt, nicht live"></span> belegt, aber nicht live</span><span><span class="dot c-r" title="Schätzung"></span> Schätzung</span></div>
+</section>
+
+<footer>Erstellt vom Reise-Concierge für Toby &amp; Laura · Summen und Differenzen automatisch berechnet aus 2026-10-berlin-paar.json</footer>
+</div>
+</body></html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TKLST Reisen-Concierge</title>
+<meta name="theme-color" content="#FBFAF4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TKLST Reisen">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<style>
+/* Layout: Handy-App – Kopf, Tab-Leiste unten (Reisen · Wunsch · Favoriten), Karten in einer Spalte. Ruby-CI hell. */
+:root {
+  --bg: #FBFAF4; --paper: #FFFFFF; --soft: #F4F3E7; --line: #E6E0D3;
+  --fg: #1C1C1A; --muted: #6E6A5E; --olive: #6F6A52; --ruby: #C3C88A; --ruby-soft: #EEF0DA;
+  --good: #3F7A4A; --bad: #B0462F;
+  --font: "Helvetica Neue", Helvetica, -apple-system, Inter, Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.5; }
+header { padding: calc(env(safe-area-inset-top, 0px) + 18px) 18px 10px; }
+header small { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--olive); font-weight: 700; }
+header h1 { margin: 2px 0 0; font-size: 28px; letter-spacing: -.02em; }
+main { padding: 8px 16px calc(env(safe-area-inset-bottom, 0px) + 96px); display: grid; gap: 16px; max-width: 640px; margin: 0 auto; }
+section[hidden] { display: none !important; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: grid; gap: 10px; }
+.card.next { border: 2px solid var(--ruby); }
+.eyebrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--olive); font-weight: 700; }
+.card h2 { margin: 0; font-size: 22px; letter-spacing: -.01em; }
+.meta { color: var(--muted); font-size: 14px; }
+.pill { justify-self: start; background: var(--soft); color: var(--muted); font-size: 12px; font-weight: 600; border-radius: 999px; padding: 2px 10px; }
+.headline { font-weight: 600; }
+.todo { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.todo label { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; }
+.todo input { width: 20px; height: 20px; accent-color: var(--olive); margin-top: 1px; flex: none; }
+.todo input:checked + span { color: var(--muted); text-decoration: line-through; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border-radius: 12px; border: 0;
+  background: var(--fg); color: var(--bg); font: 600 15px var(--font); text-decoration: none; cursor: pointer; }
+.btn.ghost { background: var(--soft); color: var(--fg); }
+.btn:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--olive); outline-offset: 2px; }
+.today { display: grid; gap: 4px; border-top: 1px solid var(--line); padding-top: 10px; }
+.today li { display: grid; grid-template-columns: 52px 1fr; gap: 8px; font-size: 15px; }
+.today ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.today time { color: var(--olive); font-weight: 700; font-variant-numeric: tabular-nums; }
+.today .fix span { font-weight: 700; }
+.list { display: grid; gap: 10px; }
+.mini { display: flex; justify-content: space-between; gap: 12px; align-items: center; text-decoration: none; color: inherit;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.mini b { display: block; }
+.mini span { color: var(--muted); font-size: 13px; }
+.mini::after { content: "›"; color: var(--olive); font-size: 22px; }
+form { display: grid; gap: 14px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
+legend { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips input { position: absolute; opacity: 0; pointer-events: none; }
+.chips label { padding: 9px 14px; border-radius: 999px; background: var(--soft); font-size: 15px; font-weight: 600; cursor: pointer; }
+.chips input:checked + label { background: var(--ruby); }
+.chips input:focus-visible + label { outline: 2px solid var(--olive); }
+textarea, input[type=text] { width: 100%; font: 16px var(--font); padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); color: var(--fg); }
+textarea { min-height: 120px; resize: vertical; }
+.note { font-size: 14px; color: var(--muted); }
+.ok { color: var(--good); font-weight: 600; }
+.err { color: var(--bad); font-weight: 600; }
+.fav b { display: block; }
+.fav .city { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--olive); font-weight: 700; }
+nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(3, 1fr);
+  background: rgba(251,250,244,.96); border-top: 1px solid var(--line); padding: 6px 8px calc(env(safe-area-inset-bottom, 0px) + 6px);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+nav.tabs button { background: none; border: 0; font: 600 12px var(--font); color: var(--muted); padding: 8px 4px; display: grid; justify-items: center; gap: 2px; cursor: pointer; }
+nav.tabs button i { font-style: normal; font-size: 20px; line-height: 1; }
+nav.tabs button[aria-current="page"] { color: var(--fg); }
+nav.tabs button[aria-current="page"] i { filter: none; }
+.empty { color: var(--muted); text-align: center; padding: 24px 8px; }
+</style>
+</head>
+<body>
+<header>
+  <small>TKLST · Laura &amp; Toby</small>
+  <h1 id="title">Reisen</h1>
+</header>
+
+<main>
+  <section id="tab-reisen" aria-label="Reisen">
+    <div id="next"></div>
+    <h3 class="eyebrow" style="margin:18px 2px 8px">Alle Reisen</h3>
+    <div class="list" id="all"><p class="empty">Reisen werden geladen …</p></div>
+  </section>
+
+  <section id="tab-wunsch" aria-label="Wunsch schicken" hidden>
+    <div class="card">
+      <p class="eyebrow">An den Concierge</p>
+      <h2>Wunsch oder Tipp schicken</h2>
+      <p class="note">Landet direkt beim Concierge. Lieblingsorte und No-Gos merkt er sich dauerhaft.</p>
+      <form id="wish">
+        <fieldset>
+          <legend>Von</legend>
+          <div class="chips">
+            <input type="radio" name="von" id="von-l" value="Laura" checked><label for="von-l">Laura</label>
+            <input type="radio" name="von" id="von-t" value="Toby"><label for="von-t">Toby</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Was ist es?</legend>
+          <div class="chips">
+            <input type="radio" name="art" id="art-r" value="Reisewunsch" checked><label for="art-r">✈️ Reisewunsch</label>
+            <input type="radio" name="art" id="art-f" value="Lieblingsort"><label for="art-f">❤️ Lieblingsort</label>
+            <input type="radio" name="art" id="art-n" value="No-Go"><label for="art-n">🚫 No-Go</label>
+            <input type="radio" name="art" id="art-b" value="Feedback"><label for="art-b">💬 Feedback</label>
+          </div>
+        </fieldset>
+        <div>
+          <label class="eyebrow" for="text">Beschreibung</label>
+          <textarea id="text" name="text" required minlength="3" maxlength="2000" placeholder="z. B. Wochenende Wien im November, gern mit Spa – oder: Das Café X in Hamburg lieben wir"></textarea>
+        </div>
+        <div>
+          <label class="eyebrow" for="wann">Wann? (optional)</label>
+          <input type="text" id="wann" name="wann" maxlength="200" placeholder="z. B. 20.–22. November">
+        </div>
+        <button class="btn" type="submit">Abschicken</button>
+        <p id="wish-status" role="status" class="note"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="tab-favoriten" aria-label="Favoriten" hidden>
+    <div class="list" id="favs"><p class="empty">Favoriten werden geladen …</p></div>
+  </section>
+</main>
+
+<nav class="tabs" aria-label="Bereiche">
+  <button data-tab="reisen" aria-current="page"><i aria-hidden="true">🧳</i>Reisen</button>
+  <button data-tab="wunsch"><i aria-hidden="true">✍️</i>Wunsch</button>
+  <button data-tab="favoriten"><i aria-hidden="true">❤️</i>Favoriten</button>
+</nav>
+
+<script>
+const SUPABASE_URL = "https://ngmqeemhgeytcrscvfpi.supabase.co";
+// Öffentlicher Schlüssel: darf in diesem Projekt ausschließlich neue Wünsche eintragen (RLS), nichts lesen.
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5nbXFlZW1oZ2V5dGNyc2N2ZnBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE2OTczMTYsImV4cCI6MjEwNzI3MzMxNn0.a9SOkeBLZojWrMBJqJoil4tgL7uD2MOdMq0hY3w1dhc";
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const titles = { reisen: "Reisen", wunsch: "Wunsch", favoriten: "Favoriten" };
+
+function show(tab) {
+  for (const t of Object.keys(titles)) $("#tab-" + t).hidden = t !== tab;
+  document.querySelectorAll("nav.tabs button").forEach((b) => b.dataset.tab === tab ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current"));
+  $("#title").textContent = titles[tab];
+  try { localStorage.setItem("tab", tab); } catch (e) {}
+}
+document.querySelectorAll("nav.tabs button").forEach((b) => b.addEventListener("click", () => show(b.dataset.tab)));
+
+function todoKey(slug, i) { return "todo:" + slug + ":" + i; }
+function readDone(k) { try { return localStorage.getItem(k) === "1"; } catch (e) { return false; } }
+
+function nextCard(t) {
+  const today = new Date().toISOString().slice(0, 10);
+  const day = t.days.find((d, i) => {
+    const iso = new Date(new Date(t.start).getTime() + i * 864e5).toISOString().slice(0, 10);
+    return iso === today;
+  }) || t.days[0];
+  const todos = t.todo.map((x, i) => `<li><label><input type="checkbox" data-k="${todoKey(t.slug, i)}" ${readDone(todoKey(t.slug, i)) ? "checked" : ""}><span>${esc(x)}</span></label></li>`).join("");
+  const items = (day?.items || []).map((i) => `<li class="${i.fix ? "fix" : ""}"><time>${esc(i.t)}</time><span>${esc(i.what)}</span></li>`).join("");
+  return `<article class="card next">
+    <span class="eyebrow">Nächste Reise</span>
+    <h2>${esc(t.title)}</h2>
+    <p class="meta">${esc(t.dates)} · ${esc(t.travellers)}</p>
+    <span class="pill">${esc(t.status)}</span>
+    <p class="headline">${esc(t.headline)}</p>
+    ${todos ? `<ul class="todo">${todos}</ul>` : ""}
+    ${day ? `<div class="today"><span class="eyebrow">${esc(day.label)} ${esc(day.date)}</span><ol>${items}</ol></div>` : ""}
+    <div class="row"><a class="btn" href="/expose/${esc(t.slug)}.html">Exposé öffnen</a>${t.pdf ? `<a class="btn ghost" href="/expose/${esc(t.slug)}.pdf">PDF</a>` : ""}</div>
+  </article>`;
+}
+
+async function loadTrips() {
+  try {
+    const trips = await (await fetch("/data/trips.json", { cache: "no-cache" })).json();
+    const today = new Date().toISOString().slice(0, 10);
+    const upcoming = trips.filter((t) => !t.archiv && t.end >= today).sort((a, b) => a.start.localeCompare(b.start));
+    $("#next").innerHTML = upcoming.length ? nextCard(upcoming[0]) : `<div class="card"><h2>Gerade keine Reise geplant</h2><p class="note">Schick dem Concierge einen Wunsch – unten auf „Wunsch“ tippen.</p></div>`;
+    $("#all").innerHTML = trips.map((t) => `<a class="mini" href="/expose/${esc(t.slug)}.html"><div><b>${esc(t.title)}</b><span>${esc(t.dates)} · ${esc(t.travellers)}${t.archiv ? " · Test" : ""}</span></div></a>`).join("") || `<p class="empty">Noch keine Reisen.</p>`;
+    document.querySelectorAll(".todo input").forEach((c) => c.addEventListener("change", () => { try { localStorage.setItem(c.dataset.k, c.checked ? "1" : "0"); } catch (e) {} }));
+  } catch (e) {
+    $("#all").innerHTML = `<p class="empty">Reisen konnten nicht geladen werden. Bitte Internetverbindung prüfen.</p>`;
+  }
+}
+
+async function loadFavs() {
+  try {
+    const f = await (await fetch("/data/favoriten.json", { cache: "no-cache" })).json();
+    const block = (title, rows, fn) => rows.length ? `<h3 class="eyebrow" style="margin:6px 2px 0">${title}</h3>` + rows.map(fn).join("") : "";
+    const html =
+      block("Lieblingshotels", f.hotels, (h) => `<div class="card fav"><span class="city">${esc(h.stadt)}</span><b>${esc(h.name)}</b><span class="note">${esc(h.warum)}</span></div>`) +
+      block("Lieblingsorte", f.orte, (o) => `<div class="card fav"><span class="city">${esc(o.stadt)} · ${esc(o.typ)}</span><b>${esc(o.name)}</b><span class="note">${esc(o.warum)}</span></div>`) +
+      block("No-Gos", f.nogos, (n) => `<div class="card fav"><b>${esc(n.was)}</b><span class="note">${esc(n.warum)}</span></div>`);
+    $("#favs").innerHTML = html || `<p class="empty">Noch keine Favoriten. Unter „Wunsch“ einen Lieblingsort schicken.</p>`;
+  } catch (e) {
+    $("#favs").innerHTML = `<p class="empty">Favoriten konnten nicht geladen werden.</p>`;
+  }
+}
+
+$("#wish").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const fd = new FormData(ev.target);
+  const status = $("#wish-status");
+  const btn = ev.target.querySelector("button");
+  btn.disabled = true; status.className = "note"; status.textContent = "Wird gesendet …";
+  try {
+    const res = await fetch(SUPABASE_URL + "/rest/v1/reise_wuensche", {
+      method: "POST",
+      headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY, "Content-Type": "application/json", Prefer: "return=minimal" },
+      body: JSON.stringify({ von: fd.get("von"), art: fd.get("art"), text: fd.get("text").trim(), wann: (fd.get("wann") || "").trim() || null }),
+    });
+    if (!res.ok) throw new Error(res.status);
+    status.className = "ok"; status.textContent = "Angekommen. Der Concierge kümmert sich darum.";
+    ev.target.querySelector("#text").value = ""; ev.target.querySelector("#wann").value = "";
+  } catch (e) {
+    status.className = "err"; status.textContent = "Senden hat nicht geklappt. Bitte Internetverbindung prüfen und nochmal versuchen.";
+  } finally { btn.disabled = false; }
+});
+
+let start = "reisen";
+try { start = localStorage.getItem("tab") || "reisen"; } catch (e) {}
+show(titles[start] ? start : "reisen");
+loadTrips(); loadFavs();
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});
+</script>
+</body>
+</html>

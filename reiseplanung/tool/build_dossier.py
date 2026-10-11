@@ -159,7 +159,7 @@ def render(trip):
         for c in rec["costs"]
     )
     cost_rows += f'<tr><td>{m["nights"]} Nächte {e(rec_hotel["name"])}</td><td class="num">{e(eur_range(*hotel_rng))}</td><td>{dot(rec_hotel["conf"])}</td></tr>'
-    cost_rows += f'<tr class="sum"><td>Summe für {e(m["payer"])}</td><td class="num">{e(eur_range(rec["total_lo"], rec["total_hi"]))}</td><td></td></tr>'
+    cost_rows += f'<tr class="sum"><td>Summe</td><td class="num">{e(eur_range(rec["total_lo"], rec["total_hi"]))}</td><td></td></tr>'
 
     save_rows = "".join(
         f'<tr><td>{e(s["label"])}</td><td class="num save">−{e(eur_range(*s["save"]))}</td><td class="muted">{e(s["tradeoff"])}</td></tr>'
@@ -327,11 +327,11 @@ footer {{ font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--li
 <div class="wrap">
 
 <section>
-  <div class="top"><b>Ruby Recruiting Hub · Reise-Concierge</b><span>Exposé · Stand {e(m['stand'])}</span></div>
+  <div class="top"><b>TKLST · Reisen-Concierge</b><span>Exposé · Stand {e(m['stand'])}</span></div>
   <div class="hero">
     <span class="status" style="justify-self:start">{e(m['status'])}</span>
     <h1>{e(m['title'])}</h1>
-    <div class="meta"><span>{e(m['route'])}</span><span>{e(m['dates'])}</span><span>{e(m['travellers'])} · {e(m['purpose'])}</span><span>Kosten: {e(m['payer'])}</span></div>
+    <div class="meta"><span>{e(m['route'])}</span><span>{e(m['dates'])}</span><span>{e(m['travellers'])} · {e(m['purpose'])}</span></div>
   </div>
   <div class="verdict"><h2>Unsere Empfehlung</h2><p>{e(trip['recommendation']['headline'])}</p><ul>{why}</ul></div>
 </section>
