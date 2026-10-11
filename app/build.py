@@ -125,7 +125,7 @@ def build_rueckfragen():
 
 def build_icons():
     icons = PUB / "icons"
-    if (icons / "icon-512.png").exists():
+    if (icons / "icon-512.png").exists() and (icons / ".v2").exists():
         return
     from PIL import Image, ImageDraw, ImageFont
     icons.mkdir(parents=True, exist_ok=True)
@@ -137,11 +137,12 @@ def build_icons():
         r = int(size * 0.30)
         cx, cy = size // 2, int(size * 0.44)
         d.ellipse([cx - r, cy - r, cx + r, cy + r], fill="#C3C88A")
-        font = ImageFont.truetype(font_path, int(size * 0.24)) if font_path else ImageFont.load_default()
-        d.text((cx, cy), "TK", fill="#1C1C1A", font=font, anchor="mm")
+        font = ImageFont.truetype(font_path, int(size * 0.135)) if font_path else ImageFont.load_default()
+        d.text((cx, cy), "TKLST", fill="#1C1C1A", font=font, anchor="mm")
         small = ImageFont.truetype(font_path, int(size * 0.085)) if font_path else ImageFont.load_default()
         d.text((cx, int(size * 0.86)), "REISEN", fill="#6F6A52", font=small, anchor="mm")
         img.save(icons / name)
+    (icons / ".v2").write_text("TKLST")
 
 
 if __name__ == "__main__":
