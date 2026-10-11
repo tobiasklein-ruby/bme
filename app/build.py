@@ -26,7 +26,7 @@ MEM = ROOT / "reiseplanung" / "GEDAECHTNIS.md"
 
 EXPOSE_WRAP = """<!doctype html><html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#FBFAF4"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#FBFAF4"><link rel="apple-touch-icon" href="/icons/tklst-apple-180.png">
 <style>:root{{color-scheme:light}} .back{{position:sticky;top:0;z-index:5;display:flex;gap:12px;align-items:center;
 padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px;background:#FBFAF4;border-bottom:1px solid #E6E0D3;
 font:600 15px "Helvetica Neue",Helvetica,Arial,sans-serif}} .back a{{color:#6F6A52;text-decoration:none}}</style>
@@ -125,13 +125,15 @@ def build_rueckfragen():
 
 def build_icons():
     icons = PUB / "icons"
-    if (icons / "icon-512.png").exists() and (icons / ".v2").exists():
+    if (icons / "tklst-og.png").exists():
         return
+    for old in icons.glob("*.png"):
+        old.unlink()
     from PIL import Image, ImageDraw, ImageFont
     icons.mkdir(parents=True, exist_ok=True)
     font_path = next((p for p in ["/usr/share/fonts/opentype/inter/Inter-Bold.otf",
                                   "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"] if Path(p).exists()), None)
-    for size, name in [(512, "icon-512.png"), (192, "icon-192.png"), (180, "apple-touch-icon.png")]:
+    for size, name in [(512, "tklst-512.png"), (192, "tklst-192.png"), (180, "tklst-apple-180.png")]:
         img = Image.new("RGB", (size, size), "#F4F3E7")
         d = ImageDraw.Draw(img)
         r = int(size * 0.30)
@@ -142,7 +144,15 @@ def build_icons():
         small = ImageFont.truetype(font_path, int(size * 0.085)) if font_path else ImageFont.load_default()
         d.text((cx, int(size * 0.86)), "REISEN", fill="#6F6A52", font=small, anchor="mm")
         img.save(icons / name)
-    (icons / ".v2").write_text("TKLST")
+    # Vorschaubild für WhatsApp/iMessage-Links (1200×630)
+    og = Image.new("RGB", (1200, 630), "#F4F3E7")
+    d = ImageDraw.Draw(og)
+    d.ellipse([90, 135, 450, 495], fill="#C3C88A")
+    d.text((270, 315), "TKLST", fill="#1C1C1A", font=ImageFont.truetype(font_path, 92), anchor="mm")
+    d.text((520, 260), "TKLST", fill="#1C1C1A", font=ImageFont.truetype(font_path, 84), anchor="lm")
+    d.text((520, 350), "Reisen-Concierge", fill="#6F6A52", font=ImageFont.truetype(font_path, 56), anchor="lm")
+    d.text((520, 430), "für Laura & Toby", fill="#6E6A5E", font=ImageFont.truetype(font_path, 38), anchor="lm")
+    og.save(icons / "tklst-og.png")
 
 
 if __name__ == "__main__":
