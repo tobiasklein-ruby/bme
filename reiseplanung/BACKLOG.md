@@ -156,6 +156,13 @@ Ergänzungen für uns (fehlen bei Hendrik):
 - Datenquellen-Hierarchie in CLAUDE.md festgelegt
 - Alte Vorlage Reisedossier-Berlin entfernt, neu: dossiers/2026-10-berlin.*
 
+## Reise: Berlin zu zweit, Mo 12.–Mi 14.10.2026 (privat, TKLST)
+- Exposé: reiseplanung/trips/2026-10-berlin-paar.json → dossiers/2026-10-berlin-paar.*
+- Empfehlung: hin ICE 1162 07:03 Sparpreis, zurück ca. 13:30 Flexpreis (live bestätigen; ICE 693 wegen Sanierung Hannover–Berlin vermutlich > 20:00; sicher: ICE 691 11:27→17:11)
+- Hotel: The Mandala (ONO Spa), Plan B Hotel am Steinplatz
+- Learning: Zu zweit ohne BahnCard für Laura ist Auto (0,30 €/km) preislich gleichauf mit der Bahn → Bahn gewinnt über Zeit/Entspannung
+- Learning: Generator-Labels für private Reisen („Entspannt nutzbar“) über meta.use_label
+
 ## Offene Fragen
 - [x] Bahnklasse: smart vergleichen
 - [x] BahnCard Toby: BC50 2. Kl. + Deutschlandticket

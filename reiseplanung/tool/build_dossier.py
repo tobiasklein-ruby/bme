@@ -95,7 +95,7 @@ def bars_cost(options):
     return f'<svg viewBox="0 0 680 {y}" class="chart" role="img" aria-label="Gesamtkosten je Option">{"".join(rows)}</svg>'
 
 
-def bars_time(options):
+def bars_time(options, use_word="Arbeit"):
     top = max(o["door_mid"] for o in options) * 1.05
     rows, y = [], 8
     for o in options:
@@ -105,7 +105,7 @@ def bars_time(options):
             f'<text x="0" y="{y+15}" class="lbl">{e(o["id"])} · {e(o["name"])}</text>'
             f'<rect x="120" y="{y+4}" width="{tl:.1f}" height="16" rx="3" class="b-lost"/>'
             + (f'<rect x="120" y="{y+4}" width="{wl:.1f}" height="16" rx="3" class="b-work"/>' if wl > 0 else "")
-            + f'<text x="{120+tl+8:.1f}" y="{y+16}" class="val">{e(hours(o["door_mid"]))} · davon {e(hours(o["work_h"]))} Arbeit</text>'
+            + f'<text x="{120+tl+8:.1f}" y="{y+16}" class="val">{e(hours(o["door_mid"]))} · davon {e(hours(o["work_h"]))} {e(use_word)}</text>'
         )
         y += 34
     return f'<svg viewBox="0 0 680 {y}" class="chart" role="img" aria-label="Reisezeit und Arbeitszeit je Option">{"".join(rows)}</svg>'
@@ -113,6 +113,9 @@ def bars_time(options):
 
 def render(trip):
     m = trip["meta"]
+    use_label = m.get("use_label", "Arbeitszeit")
+    use_word = m.get("use_word", "Arbeit")
+    lost_note = m.get("lost_note", "„Verlorene Zeit“ ist die Reisezeit, in der du nicht arbeiten kannst.")
     rec, rec_hotel, hotel_rng = compute(trip)
     opts = trip["options"]
 
@@ -133,7 +136,7 @@ def render(trip):
   <p class="cap">gesamt inkl. {m['nights']} Nächte {e(rec_hotel['name'])}</p>
   <dl>
     <div><dt>Tür zu Tür</dt><dd>{e(hours(o['door_mid']))}</dd></div>
-    <div><dt>Arbeitszeit</dt><dd>{e(hours(o['work_h']))}</dd></div>
+    <div><dt>{e(use_label)}</dt><dd>{e(hours(o['work_h']))}</dd></div>
     <div><dt>Verlorene Zeit</dt><dd>{e(hours(o['lost_h']))}</dd></div>
   </dl>
   {chips}
@@ -338,10 +341,10 @@ footer {{ font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--li
   <div class="opts">{''.join(cards)}</div>
   <div class="charts">
     <div class="chartbox"><h4>Gesamtkosten (Balken = Mitte, Linie = Spanne)</h4>{bars_cost(opts)}</div>
-    <div class="chartbox"><h4>Zeit unterwegs, hin und zurück</h4>{bars_time(opts)}
-      <div class="legend"><span><i style="background:var(--ruby)"></i>arbeitsfähig</span><span><i style="background:var(--line)"></i>verlorene Zeit</span></div></div>
+    <div class="chartbox"><h4>Zeit unterwegs, hin und zurück</h4>{bars_time(opts, use_word)}
+      <div class="legend"><span><i style="background:var(--ruby)"></i>{e(use_label)}</span><span><i style="background:var(--line)"></i>verlorene Zeit</span></div></div>
   </div>
-  <p class="muted">„Verlorene Zeit“ ist die Reisezeit, in der du nicht arbeiten kannst. Differenzen beziehen sich auf die Empfehlung.</p>
+  <p class="muted">{e(lost_note)} Differenzen beziehen sich auf die Empfehlung.</p>
 </section>
 
 <section>

@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "slug": "2026-10-berlin-paar",
+    "title": "Berlin zu zweit",
+    "route": "Stuttgart → Berlin → Stuttgart",
+    "dates": "Mo 12. – Mi 14. Oktober 2026",
+    "travellers": "Laura & Toby",
+    "purpose": "Kurztrip, keine Termine",
+    "payer": "Privat (TKLST)",
+    "status": "Entwurf · nichts gebucht",
+    "stand": "11.10.2026",
+    "nights": 2,
+    "use_label": "Entspannt nutzbar",
+    "use_word": "entspannt",
+    "lost_note": "„Verlorene Zeit“ ist Reisezeit, in der ihr weder lesen noch entspannen könnt (Fahren, Sicherheitskontrolle, Warten)."
+  },
+  "recommendation": {
+    "option": "A",
+    "hotel": "mandala",
+    "headline": "Mit dem ICE-Sprinter hin, flexibel zurück, dazwischen The Mandala mit Panorama-Spa",
+    "why": [
+      "07:03 ab Stuttgart, 11:47 in Berlin, direkt und ohne Umstieg",
+      "Flug würde 05:00 Aufstehen bedeuten, der Rückflug ist unsicher",
+      "Spa für Laura im Haus, Tiergarten zum Laufen für Toby vor der Tür"
+    ]
+  },
+  "todo": [
+    "Bahn heute buchen: hin Sparpreis ICE 1162 (07:03), zurück Flexpreis. Rückverbindung um ca. 13:30 live bestätigen",
+    "The Mandala: Flex-Rate, Hofzimmer, Gepäck ab 12 Uhr, Spa-Zugang klären",
+    "Reservieren: Grill Royal (Mo), Remi (Di), Dom-Konzert Di 20:30, Reichstagskuppel Mi"
+  ],
+  "options": [
+    {
+      "id": "A",
+      "name": "Bahn",
+      "detail": "ICE-Sprinter hin · zurück ca. 13:30 mit Umstieg",
+      "costs": [
+        {"label": "Hin: 2 × Sparpreis 2. Kl. (Toby mit BC50)", "min": 105, "max": 210, "conf": "rot"},
+        {"label": "Zurück: 2 × Flexpreis 2. Kl. (Toby mit BC50)", "min": 233, "max": 263, "conf": "rot"},
+        {"label": "4 × Sitzplatz", "min": 22, "max": 22, "conf": "gelb"},
+        {"label": "ÖPNV mit Deutschlandticket", "min": 0, "max": 0, "conf": "gruen"}
+      ],
+      "door_h": [11.5, 12.5],
+      "work_h": 9.0,
+      "plus": ["Hin direkt, 4:44 h", "Lesen, essen, entspannen am Platz"],
+      "minus": ["Rückweg mit Umstieg", "Sprinter oft 10–40 Min. spät"]
+    },
+    {
+      "id": "B",
+      "name": "Flug",
+      "detail": "Eurowings STR–BER · 1 Koffer",
+      "costs": [
+        {"label": "2 Personen hin und zurück", "min": 400, "max": 1000, "conf": "rot"},
+        {"label": "1 Koffer, 2 Strecken", "min": 36, "max": 36, "conf": "gelb"},
+        {"label": "S-Bahn und FEX mit Deutschlandticket", "min": 0, "max": 0, "conf": "gruen"}
+      ],
+      "door_h": [8.5, 10.0],
+      "work_h": 1.0,
+      "plus": ["Am schnellsten in Berlin"],
+      "minus": ["Abflug 07:10, also 05:00 aus dem Haus", "Rückflug am Mittwoch unklar"]
+    },
+    {
+      "id": "C",
+      "name": "Auto",
+      "detail": "Eigenes Auto · 634 km pro Richtung",
+      "costs": [
+        {"label": "2 × 634 km × 0,30 €", "min": 380, "max": 380, "conf": "gruen"},
+        {"label": "Hotelgarage 2 Nächte", "min": 50, "max": 80, "conf": "rot"}
+      ],
+      "door_h": [13.0, 15.0],
+      "work_h": 0.0,
+      "plus": ["Gepäck egal, flexibel"],
+      "minus": ["Längste Option", "Einer fährt 13 Stunden"]
+    }
+  ],
+  "hotels": [
+    {"id": "mandala", "name": "The Mandala", "style": "Design Hotels · 5★", "where": "Potsdamer Platz · 1 Station ab Hbf", "rating": "9,1", "night": [230, 320], "conf": "rot", "plus": "ONO Spa im 11. Stock, Saunen mit Blick, ruhig", "minus": "kann über 250 € liegen"},
+    {"id": "steinplatz", "name": "Hotel am Steinplatz", "style": "Autograph Collection · Jugendstil 1913", "where": "Charlottenburg · S-Bahn Zoo", "rating": "9,6 (Hotels.com)", "night": [190, 260], "conf": "rot", "plus": "Spa mit Saunen, Ku'damm-Shopping", "minus": "West-Berlin, weiter zur Mitte"},
+    {"id": "telegraphenamt", "name": "Telegraphenamt", "style": "Design-Boutique", "where": "Mitte · Museumsinsel zu Fuß", "rating": "8,9 (Booking)", "night": [220, 310], "conf": "rot", "plus": "beste Szene-Lage", "minus": "kleiner Spa, unter 9,0"},
+    {"id": "adlon", "name": "Hotel Adlon Kempinski", "style": "Top-Haus der Stadt", "where": "Brandenburger Tor", "rating": "9,2", "night": [450, 700], "conf": "rot", "plus": "Ikone, Pool und Spa", "minus": "weit über Budget", "top": true}
+  ],
+  "savings": [
+    {"label": "Rückfahrt Sparpreis statt Flexpreis", "save": [60, 120], "tradeoff": "Zugbindung, dabei ist der Rückfahrplan baustellenbedingt unsicher"},
+    {"label": "Hotel am Steinplatz statt Mandala", "save": [60, 120], "tradeoff": "Charlottenburg statt Potsdamer Platz"},
+    {"label": "Sterneküche nur an einem Abend", "save": [300, 500], "tradeoff": "der zweite Abend in der Bistronomie"}
+  ],
+  "days": [
+    {"label": "Montag", "date": "12.10.", "theme": "Ankommen", "items": [
+      {"t": "06:30", "what": "Los von zu Hause", "fix": true},
+      {"t": "07:03", "what": "ICE 1162, direkt", "fix": true},
+      {"t": "11:47", "what": "Berlin Hbf, RE 1 Station", "fix": false},
+      {"t": "12:15", "what": "Koffer ins Mandala, Lunch", "fix": false},
+      {"t": "14:30", "what": "Gropius Bau (montags offen)", "fix": false},
+      {"t": "17:00", "what": "Laura: ONO Spa · Toby: Topographie", "fix": false},
+      {"t": "19:30", "what": "Grill Royal", "fix": false},
+      {"t": "21:30", "what": "Festival of Lights, Brandenburger Tor", "fix": false}
+    ]},
+    {"label": "Dienstag", "date": "13.10.", "theme": "Kultur & Shopping", "items": [
+      {"t": "07:30", "what": "Toby: Lauf Tiergarten, 7 km", "fix": false},
+      {"t": "09:00", "what": "Kaffee: The Barn", "fix": false},
+      {"t": "10:00", "what": "Neue Nationalgalerie", "fix": false},
+      {"t": "12:30", "what": "Andreas Murkudis", "fix": false},
+      {"t": "14:30", "what": "Mitte: Store X, Mulackstraße", "fix": false},
+      {"t": "18:00", "what": "Remi", "fix": false},
+      {"t": "20:30", "what": "Festival-Konzert im Berliner Dom", "fix": true}
+    ]},
+    {"label": "Mittwoch", "date": "14.10.", "theme": "Heimreise", "items": [
+      {"t": "08:30", "what": "Check-out, Koffer bleibt", "fix": true},
+      {"t": "09:00", "what": "Brunch: House of Small Wonder", "fix": false},
+      {"t": "10:45", "what": "Reichstagskuppel (angemeldet)", "fix": true},
+      {"t": "12:30", "what": "Koffer holen, zum Hbf", "fix": false},
+      {"t": "13:30", "what": "ICE ab Berlin (live bestätigen)", "fix": true},
+      {"t": "19:30", "what": "Stuttgart Hbf", "fix": false},
+      {"t": "20:00", "what": "Zu Hause", "fix": true}
+    ]}
+  ],
+  "evenings": [
+    {"day": "Montag", "picks": [
+      {"level": "Szene", "name": "Monsieur Vuong", "food": "vietnamesisch, ohne Reservierung", "price": "20–30 €", "link": "https://www.timeout.com/berlin/restaurants-and-cafes/monsieur-vuong"},
+      {"level": "Bistronomie", "name": "Grill Royal", "food": "Steak, Spree-Blick", "price": "80–120 €", "link": "https://www.grillroyal.com", "pick": true},
+      {"level": "2 Sterne", "name": "FACIL", "food": "im Mandala, Mo-Öffnung prüfen", "price": "ab 175 €", "link": "https://www.facil.de"}
+    ]},
+    {"day": "Dienstag", "picks": [
+      {"level": "Szene", "name": "Zola", "food": "Neapolitanische Pizza am Kanal", "price": "15–25 €", "link": "https://www.top10berlin.de/de/cat/essen-267/pizza-1400/zola-168614"},
+      {"level": "Bib Gourmand", "name": "Remi", "food": "modern-regional, Torstraße", "price": "50–80 €", "link": "https://guide.michelin.com/us/en/berlin-region/berlin/restaurant/remi", "pick": true},
+      {"level": "2 Sterne", "name": "Tim Raue", "food": "asiatisch, statt Dom-Konzert", "price": "ab 258 €", "link": "https://tim-raue.com"}
+    ]}
+  ],
+  "facts": [
+    {"label": "Wetter", "value": "Klimamittel 13–14 °C, nachts 6 °C, Regenjacke"},
+    {"label": "Sonne", "value": "auf 07:26, unter 18:19"},
+    {"label": "Events", "value": "Festival of Lights 19–23 Uhr, Dom-Konzert Di 20:30"},
+    {"label": "Achtung", "value": "Mo Museen zu, Di Gropius Bau zu"}
+  ],
+  "sources": [
+    {"what": "Hinfahrt ICE 1162 07:03 → 11:47", "src": "DB-Presse, Stuttgarter Zeitung", "conf": "gelb"},
+    {"what": "Rückfahrt ca. 13:30", "src": "nicht live auffindbar, Baustelle Hannover–Berlin", "conf": "rot"},
+    {"what": "Bahnpreise", "src": "Erfahrungswerte, bahn.de gesperrt", "conf": "rot"},
+    {"what": "Flug Eurowings 07:10", "src": "idealo-Flugplan (September)", "conf": "gelb"},
+    {"what": "Flugpreise", "src": "Eurowings „ab“-Preise, kein Datum", "conf": "rot"},
+    {"what": "Auto 634 km", "src": "ADAC-Routenplaner", "conf": "gruen"},
+    {"what": "Hotelpreise", "src": "Kayak, Hotels.com, Dertour-Snapshots", "conf": "rot"},
+    {"what": "Hotelbewertungen, Spa", "src": "Kayak, Booking-Auszug, Michelin", "conf": "gelb"},
+    {"what": "Öffnungszeiten", "src": "Schlemmer Atlas, Michelin, visitBerlin", "conf": "gelb"},
+    {"what": "Streiks", "src": "GDL/EVG Friedenspflicht (DB-Presse)", "conf": "gruen"},
+    {"what": "Sonnenzeiten", "src": "berechnet (NOAA-Formel)", "conf": "gruen"}
+  ]
+}
