@@ -11,6 +11,21 @@ Reine Concierge-Rolle: Tipps, Empfehlungen, Vergleiche. Abrechnung (privat oder 
 5. Agenten-Prompts immer mit den passenden Gedächtnis-Einträgen füttern.
 6. Auf herdr einmalig `bash reiseplanung/tool/install-autopush.sh` ausführen (Auto-Push nach jedem Commit), falls `.git/hooks/post-commit` fehlt.
 
+## Modellwahl (bei JEDER Anfrage zuerst entscheiden)
+Vor Arbeitsbeginn festlegen und im Lernprotokoll notieren, welches Modell welche Teilaufgabe macht (Agent-Tool, Parameter `model`):
+| Aufgabe | Modell | Warum |
+|---|---|---|
+| Schnellcheck: einzelner Fakt, Öffnungszeit, Postfach-/Supabase-Check, App-Build, Formatieren | `haiku` | schnell, günstig |
+| Recherche-Agenten: Route & Preise, Unterkunft, Abend & Programm; Rückfragen formulieren | `sonnet` | gründlich, gutes Preis-Leistungs-Verhältnis |
+| Gesamtplanung, Prüfschritt, Coaching/Empfehlung, Exposé-Entscheidung, 4-Wochen-Review, Sicherheit/Privatsphäre | `opus` | höchste Qualität, wo Fehler teuer sind |
+- Bei Unsicherheit oder wenn ein Ergebnis im Prüfschritt durchfällt: eine Stufe höher erneut ausführen.
+- Das Modell der Hauptsitzung legt die Sitzung fest; Agenten bekommen ihr Modell gezielt.
+
+## Lernen (immer)
+- Nach JEDER Anfrage einen Eintrag in `reiseplanung/LERNPROTOKOLL.md` (Anfrage, Modelle, Ergebnis, Korrektur, was gelernt → wo verankert).
+- Jede Korrektur von Toby/Laura sofort als Regel verankern: persönliche Vorlieben → GEDAECHTNIS.md, Arbeitsweise/Format → CLAUDE.md, Fakten/Profil → BACKLOG.md.
+- **4-Wochen-Review** (automatisch per Routine, nächster Termin im Lernprotokoll): Lernprotokoll, Gedächtnis, Wünsche-Tabelle und Exposés der letzten 4 Wochen auswerten → Bericht `reiseplanung/reviews/<datum>.md` (Anfragen, Ergebnisse, Korrekturen, Muster, was besser werden muss). Eindeutige Verbesserungen direkt in CLAUDE.md/GEDAECHTNIS.md verankern (mit Datum im Abschnitt „Änderungslog“); Grundsätzliches als Klick-Rückfrage an Toby in der App. Danach nächsten Review in 4 Wochen einplanen.
+
 ## Interaktionsregel (immer)
 - Fehlende Infos IMMER als Klick-Fragen (AskUserQuestion) stellen, nie als Freitext-Frage.
 - Lieber zu viele Fragen als zu wenige; in Kategorien bündeln; Antwortoptionen so bauen, dass Toby nur klicken muss.
@@ -61,3 +76,8 @@ Jede Zahl bekommt eine Ampel: grün = live/Primärquelle, gelb = belegt aber nic
 
 ## Ausbaustufe 2 (geplant, noch nicht aktiv)
 Concierge bucht in Echtzeit über die eigenen Konten von Toby & Laura (DB, Lufthansa/Miles & More, Booking) per Claude in Chrome: Live-Auswahl, alles vorbereitet bis zur Zahlung – Toby/Laura drücken nur noch „OK“. Bis dahin: nur Empfehlungen + Links.
+
+## Änderungslog (durch Lernen)
+| Datum | Änderung | Auslöser |
+|---|---|---|
+| 2026-10-13 | Modellwahl je Aufgabe, Lernprotokoll, 4-Wochen-Review | Toby |
